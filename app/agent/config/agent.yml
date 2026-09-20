@@ -1,13 +1,13 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\config\agent.yml
 # 📌 Amac: JHoster agent merkezi ayarlarini tutar
 # 📌 Modul - FileType
-# Version: 3.76.0
+# Version: 3.77.0
 # Aciklama: Agent adi, surumu, sunucu portu, storage, modules, cache, otomatik package downloader, apps, service adapter, process, active web server mode, web server port guard, project, nginx validate, nginx reload, nginx executable, nginx real validate, nginx real reload, hosts publish, hosts apply, hosts auto, web server workflow lock, service manager, portable bin version scan ve executor ayarlari
 # Bagimli Oldugu Katman: Config
 
 app:
   name: JHoster Agent
-  version: 3.76.0
+  version: 3.77.0
 
 server:
   host: 127.0.0.1

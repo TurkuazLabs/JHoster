@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\main.py
 # 📌 Amac: JHoster agent FastAPI uygulamasini baslatilabilir hale getirir
 # 📌 Modul - FileType
-# Version: 3.76.0
+# Version: 3.77.0
 # Aciklama: Root, health, component, process, runtime, quick app, package downloader, license feature registry, web server workflow ve folder layout, hosts auto route kayitlarini baglar
 # Bagimli Oldugu Katman: Controller
 

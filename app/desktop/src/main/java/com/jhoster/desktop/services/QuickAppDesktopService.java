@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\services\QuickAppDesktopService.java
 // # 📌 Amac: JavaFX Quick App ve New Site stack secimi is kurallarini yonetir
 // # 📌 Modul - Java
-// # Version: 3.76.1
+// # Version: 3.77.0
 // # Aciklama: Quick App template listeleme, stack secimli planlama ve guvenli scaffold create aksiyonlarini agent API uzerinden cagirir
 // # Bagimli Oldugu Katman: Service
 

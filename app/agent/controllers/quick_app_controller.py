@@ -1,26 +1,38 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\controllers\quick_app_controller.py
 # 📌 Amac: Quick App ve stack secimli New Site HTTP endpointlerini tanimlar
 # 📌 Modul - FileType
-# Version: 3.72.0
-# Aciklama: Controller sadece request alir ve stack secimlerini Quick App service katmanina aktarir
+# Version: 3.77.0
+# Aciklama: Controller sadece request alir ve stack secimlerini provisioning destekli Quick App service katmanina aktarir
 # Bagimli Oldugu Katman: Controller
+
+from pathlib import Path
 
 from fastapi import APIRouter, Query
 
-from config.constants import QUICK_APP_ROUTE_PREFIX, QUICK_APP_ROUTE_TAG
+from config.constants import QUICK_APP_ROUTE_PREFIX, QUICK_APP_ROUTE_TAG, STACK_PROVISIONING_CONFIG_FILE_NAME
 from config.settings import AppSettings
 from repositories.hosts_auto_registry_repository import HostsAutoRegistryRepository
 from repositories.license_state_repository import LicenseStateRepository
 from repositories.project_registry_repository import ProjectRegistryRepository
 from repositories.quick_app_registry_repository import QuickAppRegistryRepository
+from repositories.manifest_repository import ManifestRepository
+from repositories.package_download_repository import PackageDownloadRepository
+from repositories.stack_provisioning_config_repository import StackProvisioningConfigRepository
 from repositories.runtime_version_repository import RuntimeVersionRepository
 from services.hosts_auto_service import HostsAutoService
 from services.plan_gate_service import PlanGateService
 from services.quick_app_service import QuickAppService
+from services.stack_provisioning_service import StackProvisioningService
 from tools.admin_privilege_tool import AdminPrivilegeTool
+from tools.archive_extract_tool import ArchiveExtractTool
+from tools.checksum_tool import ChecksumTool
+from tools.http_download_tool import HttpDownloadTool
+from tools.package_download_installer_tool import PackageDownloadInstallerTool
 from tools.hosts_auto_file_tool import HostsAutoFileTool
 from tools.project_path_tool import ProjectPathTool
 from tools.quick_app_template_tool import QuickAppTemplateTool
+from tools.safe_path_tool import SafePathTool
+from tools.web_server_profile_tool import WebServerProfileTool
 from views.api_response_view import ApiResponseView
 
 
@@ -39,6 +51,21 @@ hosts_auto_service = HostsAutoService(
     project_path_tool=project_path_tool,
     hosts_auto_file_tool=HostsAutoFileTool(settings.root_path, AdminPrivilegeTool()),
 )
+stack_provisioning_service = StackProvisioningService(
+    stack_config_repository=StackProvisioningConfigRepository(
+        Path(__file__).resolve().parents[1] / "config" / STACK_PROVISIONING_CONFIG_FILE_NAME
+    ),
+    package_download_repository=PackageDownloadRepository(settings.storage_path),
+    manifest_repository=ManifestRepository(settings.modules_path),
+    package_download_installer_tool=PackageDownloadInstallerTool(
+        safe_path_tool=SafePathTool(settings.root_path),
+        http_download_tool=HttpDownloadTool(),
+        checksum_tool=ChecksumTool(),
+        archive_extract_tool=ArchiveExtractTool(),
+    ),
+    web_server_profile_tool=WebServerProfileTool(settings.root_path),
+)
+
 quick_app_service = QuickAppService(
     quick_app_registry_repository=QuickAppRegistryRepository(settings.storage_path),
     project_registry_repository=project_registry_repository,
@@ -47,6 +74,7 @@ quick_app_service = QuickAppService(
     quick_app_template_tool=QuickAppTemplateTool(settings.root_path, project_path_tool),
     plan_gate_service=plan_gate_service,
     hosts_auto_service=hosts_auto_service,
+    stack_provisioning_service=stack_provisioning_service,
 )
 api_response_view = ApiResponseView()
 

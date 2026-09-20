@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\services\QuickAppResultFormatterService.java
 // # 📌 Amac: Agent Quick App ve stack secimi HTTP sonucunu Desktop icin okunabilir ozet haline getirir
 // # 📌 Modul - Java
-// # Version: 3.76.0
+// # Version: 3.77.0
 // # Aciklama: Template listeleme, stack secimli Quick App planlama ve create cevaplarini summary modeline cevirir
 // # Bagimli Oldugu Katman: Service
 
@@ -26,6 +26,8 @@ public final class QuickAppResultFormatterService {
     private static final String KEY_COUNT = "count";
     private static final String KEY_FILE_COUNT = "file_count";
     private static final String KEY_STACK_LABEL = "stack_label";
+    private static final String KEY_PROVISIONING_STATUS = "provisioning_status";
+    private static final String KEY_DATABASE_LABEL = "database_label";
 
     private static final int VALUE_NOT_AVAILABLE = -1;
 
@@ -41,7 +43,7 @@ public final class QuickAppResultFormatterService {
         }
 
         int count = jsonTextExtractorTool.extractInt(result.getBody(), KEY_COUNT, VALUE_NOT_AVAILABLE);
-        return buildSummary(TITLE_TEMPLATES, result, "listed", "", "", "", "", count, VALUE_NOT_AVAILABLE, "");
+        return buildSummary(TITLE_TEMPLATES, result, "listed", "", "", "", "", count, VALUE_NOT_AVAILABLE, "", "", "");
     }
 
     public QuickAppSummary formatPlan(String projectCode, String templateCode, DesktopHttpResult result) {
@@ -58,6 +60,8 @@ public final class QuickAppResultFormatterService {
         String error = jsonTextExtractorTool.extractString(body, KEY_ERROR);
         int fileCount = jsonTextExtractorTool.extractInt(body, KEY_FILE_COUNT, VALUE_NOT_AVAILABLE);
         String stackLabel = jsonTextExtractorTool.extractString(body, KEY_STACK_LABEL);
+        String provisioningStatus = jsonTextExtractorTool.extractString(body, KEY_PROVISIONING_STATUS);
+        String databaseLabel = jsonTextExtractorTool.extractString(body, KEY_DATABASE_LABEL);
 
         return buildSummary(
             TITLE_PLAN,
@@ -69,7 +73,9 @@ public final class QuickAppResultFormatterService {
             fallback(message, error),
             VALUE_NOT_AVAILABLE,
             fileCount,
-            stackLabel
+            stackLabel,
+            provisioningStatus,
+            databaseLabel
         );
     }
 
@@ -87,6 +93,8 @@ public final class QuickAppResultFormatterService {
         String error = jsonTextExtractorTool.extractString(body, KEY_ERROR);
         int fileCount = jsonTextExtractorTool.extractInt(body, KEY_FILE_COUNT, VALUE_NOT_AVAILABLE);
         String stackLabel = jsonTextExtractorTool.extractString(body, KEY_STACK_LABEL);
+        String provisioningStatus = jsonTextExtractorTool.extractString(body, KEY_PROVISIONING_STATUS);
+        String databaseLabel = jsonTextExtractorTool.extractString(body, KEY_DATABASE_LABEL);
 
         return buildSummary(
             TITLE_CREATE,
@@ -98,7 +106,9 @@ public final class QuickAppResultFormatterService {
             fallback(message, error),
             VALUE_NOT_AVAILABLE,
             fileCount,
-            stackLabel
+            stackLabel,
+            provisioningStatus,
+            databaseLabel
         );
     }
 
@@ -112,7 +122,9 @@ public final class QuickAppResultFormatterService {
         String message,
         int count,
         int fileCount,
-        String stackLabel
+        String stackLabel,
+        String provisioningStatus,
+        String databaseLabel
     ) {
         boolean apiSuccess = result.isSuccess()
             && jsonTextExtractorTool.extractBoolean(result.getBody(), KEY_SUCCESS, result.isSuccess());
@@ -128,6 +140,8 @@ public final class QuickAppResultFormatterService {
             count,
             fileCount,
             stackLabel,
+            provisioningStatus,
+            databaseLabel,
             result.toLogBlock()
         );
     }

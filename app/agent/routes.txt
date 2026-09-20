@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:/JHoster/app/agent/routes.txt
 # 📌 Amac: JHoster Agent FastAPI route yuzeyini listeler
 # 📌 Modul - Text
-# Version: 3.76.0
+# Version: 3.77.0
 # Aciklama: API audit testi bu dosyayi FastAPI uygulamasindaki route listesi ile karsilastirir
 # Bagimli Oldugu Katman: Controller
 

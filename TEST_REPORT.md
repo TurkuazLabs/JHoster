@@ -1,12 +1,26 @@
 # 📄 Dosya Yolu: E:\JHoster\TEST_REPORT.md
-# 📌 Amac: JHoster v3.76.1 test raporu
+# 📌 Amac: JHoster v3.77.0 test raporu
 # 📌 Modul - Markdown
-# Version: 3.76.1
+# Version: 3.77.0
 # Aciklama: Release cleanup, API route audit, Logs tab UI, Community plan gate ve temel static testleri kaydeder
 
 Bagimli Oldugu Katman: Service | Tool | Config | View
 
 
+
+
+## v3.77.0 Stack Provisioning Plan
+
+- Python compileall: basarili.
+- `test-stack-provisioning.py`: Apache + MySQL + PHP plan senaryosu basarili.
+- `test-stack-provisioning.py`: Nginx + PHP + Mailpit, MySQL kapali senaryosu basarili.
+- Quick App plan cevabinda `provisioning_plan`, `provisioning_status` ve `database_label`: basarili.
+- Aktif PHP runtime reuse kontrolu: basarili.
+- MySQL package disabled durumu `attention` provisioning state olarak raporlaniyor.
+- Web server profile plan Apache/Nginx safe kontrolu: basarili.
+- API surface audit: basarili; route listesi degismedi.
+- Desktop `QuickAppSummary` + `QuickAppResultFormatterService` parcali javac compile: basarili.
+- Tam JavaFX/Maven compile ortam uygunluguna gore ayrica calistirilmalidir.
 
 ## v3.76.1 Source Header ve Roadmap Tutarlilik Patch
 

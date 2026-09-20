@@ -1,0 +1,29 @@
+# 📄 Dosya Yolu: E:\JHoster\app\agent\config\stack_provisioning.yml
+# 📌 Amac: New Site stack secimlerini installer, web workflow ve database wizard planlarina baglar
+# 📌 Modul - YAML
+# Version: 3.77.0
+# Aciklama: Stack component eslemelerini kod icine gommeden merkezi YAML config olarak tanimlar
+# Bagimli Oldugu Katman: Config
+
+schema_version: 1.0.0
+
+packages:
+  apache: apache-httpd-vs17
+  nginx: nginx-windows-stable
+  php: php-8.3-windows-x64
+  mysql: mysql-windows-x64
+  mailpit: mailpit-windows-amd64
+
+runtime_components:
+  php: php-8.3
+  node: node-22
+  mysql: mysql-8.4
+  nginx: nginx-1.26
+
+database:
+  host: 127.0.0.1
+  port: 3306
+  charset: utf8mb4
+  collation: utf8mb4_unicode_ci
+  username_suffix: _user
+  password_mode: prompt

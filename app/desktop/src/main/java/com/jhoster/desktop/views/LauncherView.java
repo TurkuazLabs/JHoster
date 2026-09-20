@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\views\LauncherView.java
 // # 📌 Amac: JHoster Desktop modern launcher ana gorunumunu olusturur
 // # 📌 Modul - Java
-// # Version: 3.76.0
+// # Version: 3.77.0
 // # Aciklama: Sol sidebar ana menu, temiz status topbar, Settings/Logs tablari ve calisan aksiyon odakli modern UI saglar
 // # Bagimli Oldugu Katman: View
 
@@ -83,7 +83,7 @@ public class LauncherView {
     private static final String SIMPLE_MODE_MENU_TEXT = "Launchpad";
     private static final String SIMPLE_MODE_HINT_TEXT = "Menus moved to the left. Each section opens in a clean focused page.";
     private static final String DECK_TITLE_TEXT = "JHoster Desktop";
-    private static final String DECK_VERSION_TEXT = "v3.76.0";
+    private static final String DECK_VERSION_TEXT = "v3.77.0";
     private static final String DECK_EDITION_TEXT = "Community";
     private static final String LICENSE_DEFAULT_USAGE_TEXT = "Sites 0 / 5";
     private static final String LICENSE_DEFAULT_HINT_TEXT = "Community includes 5 active sites.";
@@ -695,6 +695,8 @@ public class LauncherView {
     private final Label quickAppLastTemplateValue = new Label(SUMMARY_VALUE_EMPTY);
     private final Label quickAppLastStatusValue = new Label(SUMMARY_VALUE_EMPTY);
     private final Label quickAppStackSummaryValue = new Label("Apache + MySQL + PHP");
+    private final Label quickAppProvisioningSummaryValue = new Label(SUMMARY_VALUE_EMPTY);
+    private final Label quickAppDatabaseSummaryValue = new Label(SUMMARY_VALUE_EMPTY);
     private final TextField quickAppProjectCodeField = new TextField(DesktopApiConfig.DEFAULT_QUICK_APP_PROJECT_CODE);
     private final TextField quickAppProjectNameField = new TextField(DesktopApiConfig.DEFAULT_QUICK_APP_PROJECT_NAME);
     private final TextField quickAppTemplateCodeField = new TextField(DesktopApiConfig.DEFAULT_QUICK_APP_TEMPLATE_CODE);
@@ -2765,6 +2767,8 @@ public class LauncherView {
             buildSummaryPill(LABEL_QUICK_APP_LAST_TEMPLATE, quickAppLastTemplateValue),
             buildSummaryPill(LABEL_QUICK_APP_LAST_STATUS, quickAppLastStatusValue),
             buildSummaryPill(LABEL_QUICK_APP_STACK, quickAppStackSummaryValue),
+            buildSummaryPill("Provisioning", quickAppProvisioningSummaryValue),
+            buildSummaryPill("Database", quickAppDatabaseSummaryValue),
             buildSummaryPill(LABEL_HOSTS_AUTO_STATUS, quickHostsAutoHealthValue)
         );
 
@@ -4562,6 +4566,8 @@ public class LauncherView {
         updateLabelIfPresent(quickAppLastTemplateValue, summary.hasTemplateCode(), summary.getTemplateCode());
         updateLabelIfPresent(quickAppLastStatusValue, summary.hasStatus(), summary.getStatus());
         updateLabelIfPresent(quickAppStackSummaryValue, summary.hasStackLabel(), summary.getStackLabel());
+        updateLabelIfPresent(quickAppProvisioningSummaryValue, summary.hasProvisioningStatus(), summary.getProvisioningStatus());
+        updateLabelIfPresent(quickAppDatabaseSummaryValue, summary.hasDatabaseLabel(), summary.getDatabaseLabel());
     }
 
     public void updateWorkflowSummary(WorkflowDesktopSummary summary) {

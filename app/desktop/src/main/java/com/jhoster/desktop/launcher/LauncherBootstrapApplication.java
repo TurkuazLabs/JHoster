@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\launcher\LauncherBootstrapApplication.java
 // # 📌 Amac: JHoster launcher splash akisini ve desktop acilisini yonetir
 // # 📌 Modul - Java
-// # Version: 3.76.0
+// # Version: 3.77.0
 // # Aciklama: Splash ekrani gosterir, GitHub latest release kontrolu yapar ve asil Desktop sahnesini fullscreen maximized olarak acar
 // # Bagimli Oldugu Katman: Controller
 

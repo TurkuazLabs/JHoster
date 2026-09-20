@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\models\QuickAppSummary.java
 // # 📌 Amac: Desktop Quick App ve stack secimi ozet verisini tasir
 // # 📌 Modul - Java
-// # Version: 3.76.0
+// # Version: 3.77.0
 // # Aciklama: Quick App template listeleme, stack secimli planlama ve create cevaplarini UI icin sade modele cevirir
 // # Bagimli Oldugu Katman: Repo/Model
 
@@ -22,6 +22,8 @@ public final class QuickAppSummary {
     private final int count;
     private final int fileCount;
     private final String stackLabel;
+    private final String provisioningStatus;
+    private final String databaseLabel;
     private final String rawLog;
 
     public QuickAppSummary(
@@ -35,6 +37,8 @@ public final class QuickAppSummary {
         int count,
         int fileCount,
         String stackLabel,
+        String provisioningStatus,
+        String databaseLabel,
         String rawLog
     ) {
         this.title = normalize(title);
@@ -47,11 +51,13 @@ public final class QuickAppSummary {
         this.count = count;
         this.fileCount = fileCount;
         this.stackLabel = normalize(stackLabel);
+        this.provisioningStatus = normalize(provisioningStatus);
+        this.databaseLabel = normalize(databaseLabel);
         this.rawLog = normalize(rawLog);
     }
 
     public static QuickAppSummary empty(String title, String rawLog) {
-        return new QuickAppSummary(title, false, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, -1, -1, EMPTY_VALUE, rawLog);
+        return new QuickAppSummary(title, false, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, -1, -1, EMPTY_VALUE, EMPTY_VALUE, EMPTY_VALUE, rawLog);
     }
 
     public String getTitle() {
@@ -94,6 +100,14 @@ public final class QuickAppSummary {
         return stackLabel;
     }
 
+    public String getProvisioningStatus() {
+        return provisioningStatus;
+    }
+
+    public String getDatabaseLabel() {
+        return databaseLabel;
+    }
+
     public boolean hasStatus() {
         return !status.isBlank();
     }
@@ -122,6 +136,14 @@ public final class QuickAppSummary {
         return !stackLabel.isBlank();
     }
 
+    public boolean hasProvisioningStatus() {
+        return !provisioningStatus.isBlank();
+    }
+
+    public boolean hasDatabaseLabel() {
+        return !databaseLabel.isBlank();
+    }
+
     public String toDisplayValue() {
         if (hasProjectCode() && hasTemplateCode()) {
             return projectCode + " / " + templateCode;
@@ -144,6 +166,8 @@ public final class QuickAppSummary {
             + "count: " + count + NEW_LINE
             + "file_count: " + fileCount + NEW_LINE
             + "stack: " + stackLabel + NEW_LINE
+            + "provisioning: " + provisioningStatus + NEW_LINE
+            + "database: " + databaseLabel + NEW_LINE
             + "message: " + message + NEW_LINE
             + rawLog;
     }

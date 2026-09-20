@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: E:\JHoster\README.md
 # 📌 Amac: JHoster sade root layout ana okuma dosyasi
 # 📌 Modul - Markdown
-# Version: 3.76.1
-# Aciklama: JHoster root klasorleri, agent, desktop, sol menu UI, Settings/Logs tablari, release cleanup, API audit ve source header path tutarlilik patch akisini aciklar
+# Version: 3.77.0
+# Aciklama: JHoster root layout, New Site stack provisioning plan, agent, desktop, Settings/Logs ve API audit akislarini aciklar
 
 Bagimli Oldugu Katman: Service | Tool | Config | View
 
@@ -49,6 +49,17 @@ powershell -ExecutionPolicy Bypass -File E:\JHoster\app\desktop\commands\run-des
 ```
 
 
+
+
+## v3.77.0 Stack Provisioning Plan
+
+- New Site / Quick App plan ve create cevaplari artik `provisioning_plan` dondurur.
+- Stack secimleri `app/agent/config/stack_provisioning.yml` uzerinden package/runtime eslemelerine baglanir.
+- Secilen Apache veya Nginx icin installer plani, profile secim plani ve post-create web server workflow istegi olusur.
+- PHP runtime aktifse mevcut runtime yeniden kullanilir; aktif runtime yoksa installer gereksinimi plan cevabinda gorunur.
+- MySQL seciliyse database wizard `database_name`, `username`, `charset`, `collation` ve password prompt bilgisini hazirlar; bu surum gercek SQL create calistirmaz.
+- MySQL package registry kaydi disabled ise provisioning durumu `attention` olur ve kullaniciya installer hazirligi gerektigi bildirilir.
+- Desktop New Site summary alanina Provisioning ve Database ozetleri eklendi.
 
 ## v3.76.1 Source Header ve Roadmap Patch
 

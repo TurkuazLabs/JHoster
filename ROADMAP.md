@@ -1,14 +1,15 @@
 # 📄 Dosya Yolu: E:\JHoster\ROADMAP.md
 # 📌 Amac: JHoster gelistirme yol haritasini tanimlar
 # 📌 Modul - Markdown
-# Version: 3.76.1
-# Aciklama: v3.76.1 tutarlilik patch sonrasi stack installer, vhost publish ve database wizard planini tanimlar
+# Version: 3.77.0
+# Aciklama: v3.77.0 stack provisioning plan tamamlanmasini ve sonraki gercek apply adimlarini tanimlar
 # Bagimli Oldugu Katman: View
 
 # JHoster Roadmap
 
 ## Tamamlanan
 
+- v3.77.0: New Site stack provisioning plan, installer eslemeleri, web workflow plan baglantisi ve MySQL database wizard plan
 - v3.76.1: Desktop aktif kaynak header path duzeltmeleri, source header guard ve roadmap tutarlilik patch
 - v3.76.0: Release cleanup, gereksiz dosya temizligi, routes.txt normalize ve API surface audit
 - v3.74.0: Logs sayfasi uygulama bazli tab menu ve log klasor mapping
@@ -36,7 +37,7 @@
 
 ## Siradaki
 
-- v3.77.0: Stack secimine gore runtime installer, vhost publish ve database create wizard baglantisi
+- v3.78.0: Provisioning plan icin kullanici onayli apply zinciri; package download/install, profile select, web workflow run ve gercek MySQL create adapter
 
 - v3.13.0: hosts file plan layer
 - v3.14.0: nginx config apply adapter hazirligi
