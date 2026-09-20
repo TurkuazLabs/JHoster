@@ -1,0 +1,44 @@
+# 📄 Dosya Yolu: E:\JHoster\modules\community\demo-local-package\manifest.yml
+# 📌 Amac: Local package installer test component manifestini tanimlar
+# 📌 Modul - FileType
+# Version: 1.1.0
+# Aciklama: Cache icindeki local runtime paketini checksum ile dogrulayip apps klasorune kurar ve runtime family tanimlar
+# Bagimli Oldugu Katman: Config
+
+package:
+  code: demo-local-package
+  name: Demo Local Package
+  version: 1.0.0
+  category: demo
+  edition: community
+  description: Local package installer icin guvenli demo runtime paketi
+
+requirements:
+  platform: windows
+  mode: local_package
+
+installer:
+  runtime_adapter: simulated
+  runtime_family: demo-local-package
+  mode: local_package
+  external_download: false
+  package_source: cache/community/demo-local-package/demo_runtime.zip
+  package_target: apps/runtime/demo-local-package/1.0.0
+  package_algorithm: sha256
+  package_checksum: fcb73ea8062f0a3f05b85a7de5914b9c73096bdbe8996147c6a5d8d8e001158e
+  package_max_bytes: 1048576
+
+actions:
+  - type: verify_checksum
+    name: Verify demo local package SHA256
+    source: cache/community/demo-local-package/demo_runtime.zip
+    algorithm: sha256
+    checksum: fcb73ea8062f0a3f05b85a7de5914b9c73096bdbe8996147c6a5d8d8e001158e
+
+  - type: extract
+    name: Extract demo local package safely
+    source: cache/community/demo-local-package/demo_runtime.zip
+    target: apps/runtime/demo-local-package/1.0.0
+    algorithm: sha256
+    checksum: fcb73ea8062f0a3f05b85a7de5914b9c73096bdbe8996147c6a5d8d8e001158e
+    max_bytes: 1048576

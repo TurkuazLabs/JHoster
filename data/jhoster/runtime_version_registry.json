@@ -1,0 +1,47 @@
+{
+  "active_versions": [
+    {
+      "family": "php",
+      "component_code": "php",
+      "name": "PHP 8.3.30",
+      "version": "8.3.30",
+      "install_path": "bin/php/php-8.3.30-Win32-vs16-x64",
+      "runtime_adapter": "php",
+      "source": "default-v3.50",
+      "folder_name": "php-8.3.30-Win32-vs16-x64",
+      "activated_at": "2026-05-12T22:00:01.363731+00:00"
+    },
+    {
+      "family": "node",
+      "component_code": "node-22",
+      "name": "Node.js 22 Runtime",
+      "version": "22",
+      "install_path": "bin/nodejs/node-22",
+      "runtime_adapter": "node",
+      "source": "default-v3.50",
+      "folder_name": "node-v22",
+      "activated_at": "2026-05-12T22:00:01.363731+00:00"
+    },
+    {
+      "family": "python",
+      "component_code": "python-3.13",
+      "name": "Python 3.13",
+      "version": "3.13",
+      "install_path": "bin/python/python-3.13",
+      "runtime_adapter": "python",
+      "source": "default-v3.50",
+      "folder_name": "python-3.13",
+      "activated_at": "2026-05-12T22:00:01.363731+00:00"
+    },
+    {
+      "family": "demo-local-package",
+      "component_code": "demo-local-package",
+      "name": "Demo Local Package",
+      "version": "1.0.0",
+      "install_path": "app/modules/community/demo-local-package",
+      "runtime_adapter": "simulated",
+      "source": "default-v3.50",
+      "activated_at": "2026-05-12T22:00:01.363731+00:00"
+    }
+  ]
+}

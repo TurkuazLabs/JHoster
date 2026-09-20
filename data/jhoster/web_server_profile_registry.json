@@ -1,0 +1,15 @@
+{
+  "profile_records": [
+    {
+      "server_code": "apache",
+      "server_name": "Apache HTTP Server",
+      "profile_status": "ready",
+      "adapter_stage": "apache_adapter_ready",
+      "default": true,
+      "status": "selected",
+      "selected_from": "snapshot_default_v3_54_0",
+      "selected_at": "2026-05-13T00:00:00+00:00",
+      "shared_document_root": "www"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+# 📄 Dosya Yolu: language/default.yml
+# 📌 Amac: JHoster varsayilan dil metinlerini tutar
+# 📌 Modul - YAML
+# Version: 3.2.0
+# Aciklama: Eksik topluluk cevirileri icin fallback dil dosyasi
+
+# Bagimli Oldugu Katman: Language
+
+app:
+  title: JHoster
+  subtitle: Hybrid Developer Platform
+
+menu:
+  dashboard: Dashboard
+  modules: Modules
+  logs: Logs
+  settings: Settings
+
+button:
+  install: Install
+  refresh: Refresh
+  open_panel: Open Panel
+  start_agent: Start Agent
+  stop_agent: Stop Agent
+
+status:
+  ready: Ready
+  running: Running
+  stopped: Stopped
+  error: Error

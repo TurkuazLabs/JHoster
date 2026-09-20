@@ -1,0 +1,20 @@
+# 📄 Dosya Yolu: E:\JHoster\app\agent\language\messages.yml
+# 📌 Amac: JHoster agent mesaj etiketlerini YAML formatinda tutar
+# 📌 Modul - FileType
+# Version: 1.2.0
+# Aciklama: Agent icin dil ve mesaj anahtar dosyasi
+# Bagimli Oldugu Katman: Language
+
+health:
+  ready: ready
+  success: success
+
+component:
+  list_success: components listed
+  not_found: component not found
+  plan_only: plan only mode
+
+installer:
+  dry_run: dry run only
+  blocked: action blocked by safe executor
+  history_success: install history listed

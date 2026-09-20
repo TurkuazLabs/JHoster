@@ -42,11 +42,14 @@
 - v3.14.0: nginx config apply adapter hazirligi
 - v3.15.0: PHP runtime adapter ilk gercek kontrol
 
+
 ## v3.14.0
 
 - Nginx validate snapshot katmani tamamlandi.
 - Sonraki adim: gercek Nginx adapter ile `nginx -t` plan ve reload dry-run katmani.
+
 - v3.16.0: Hosts publish snapshot akisi tamamlandi.
+
 
 ## v3.17.0
 
@@ -64,17 +67,21 @@
 - Nginx real validate adapter icin `nginx -t` komutunu kontrollu calistirma plani.
 - PHP runtime adapter icin ilk gercek binary kontrolu.
 
+
 ## v3.19.0 - Nginx Real Validate Adapter
 
 - Nginx executable detect sonrasinda nginx -t real validate adapter katmani eklendi.
 - Varsayilan test akisi shell calistirmadan dry-run ve execution skipped modunda kalir.
 - Yeni endpoint grubu: `/api/v1/nginx-real-validate`.
 
+
 ## v3.20.0
 
 - Nginx real reload adapter eklendi.
 - Real reload, son real validate `valid` olmadan calismaz.
+
 - Sonraki adim: real validate icin kullanici onayli calistirma profili ve rollback UI.
+
 
 # v3.22.0 Web Server Profiles
 
@@ -88,31 +95,37 @@
 - Apache planned profile guard eklendi.
 - Siradaki adim: Apache vhost generator ile adapter zincirini baslatmak.
 
+
 ## v3.24.0
 
 - Apache virtual host generator eklendi.
 - Apache publish/validate/reload henuz guard altindaki sonraki adimdir.
+
 
 ## v3.30.0
 
 - Web server unified workflow tamamlandi.
 - Sonraki adim: JavaFX ekranda profile secimi ve tek workflow butonu baglantisi.
 
+
 ## v3.31.0
 
 - Web server unified workflow rollback guard tamamlandi.
 - Sonraki adim: JavaFX ekranda active profile secimi, tek workflow butonu ve son workflow sonuc paneli.
+
 
 ## v3.32.0
 
 - Web server unified workflow run tracking tamamlandi.
 - Sonraki adim: JavaFX tarafinda tek workflow butonu, run gecmisi ve step detay paneli.
 
+
 ## v3.33.0
 
 - Web server unified workflow lock guard tamamlandi.
 - Ayni proje icin ayni anda ikinci workflow baslatma engellendi.
 - Sonraki adim: JavaFX tarafinda tek workflow butonu, run gecmisi, step detaylari ve aktif lock paneli.
+
 
 ## v3.43.0 Sonrasi
 
@@ -121,9 +134,11 @@
 3. Database Manager v1
 4. Auto SSL local CA
 
+
 ## v3.42.0 Notu
 
 Quick App v1 tamamlandi. Sira olarak Quick Add paket katalogu, DB manager veya Auto SSL katmanina gecilebilir.
+
 
 ## v3.43.0 Notu
 
@@ -139,6 +154,7 @@ Quick App v1 tamamlandi. Sira olarak Quick Add paket katalogu, DB manager veya A
 2. License Settings sayfasini mevcut menu yapisini bozmadan ayarlar akisi altina almak.
 3. Pro icin otomatik yedek, gelismis SSL, gelismis DNS ve AI/Ollama modul kapilarini feature registry ile hazirlamak.
 4. Servis modullerini tek seferde degil, runtime ailelerine gore surumlu ve testli ilerletmek.
+
 
 ## v3.70.0 Tamamlandi
 
@@ -168,7 +184,7 @@ Quick App v1 tamamlandi. Sira olarak Quick Add paket katalogu, DB manager veya A
 
 ## v3.74.0 Siradaki Plan
 
-- New Site Wizard icinde stack secimine bagli gercek Apache/Nginx vhost publish akisi.
+- New Site Wizard icinde stack secimine bagli gerçek Apache/Nginx vhost publish akisi.
 - MySQL seciliyse database create plan/dry-run akisi.
 - PHP seciliyse runtime version secim dropdown baglantisi.
 

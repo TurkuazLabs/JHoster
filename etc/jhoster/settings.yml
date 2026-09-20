@@ -1,0 +1,36 @@
+# 📄 Dosya Yolu: config/settings.yml
+# 📌 Amac: JHoster global uygulama ayarlarini tutar
+# 📌 Modul - YAML
+# Version: 3.20.0
+# Aciklama: Port, dil, tema, runtime, project ve hosts apply davranis ayarlari
+
+# Bagimli Oldugu Katman: Config
+
+app:
+  name: JHoster
+  edition: community
+  version: 3.31.0
+
+server:
+  host: 127.0.0.1
+  port: 8751
+
+language:
+  default: default
+
+theme:
+  default: default
+
+paths:
+  modules: ../modules
+  logs: ../logs
+  cache: ../cache
+  apps: ../apps
+  user_www: ../user_www
+
+web_server:
+  active: apache
+  shared_document_root: www
+  public_ports:
+    http: 80
+    https: 443

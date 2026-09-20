@@ -1,0 +1,36 @@
+# 📄 Dosya Yolu: E:\JHoster\modules\community\demo\manifest.yml
+# 📌 Amac: JHoster executor testleri icin guvenli demo manifest tanimi yapar
+# 📌 Modul - YAML
+# Version: 1.1.0
+# Aciklama: Download veya extract kullanmadan dry run ve write_file test manifesti
+# Bagimli Oldugu Katman: Config
+
+package:
+  code: demo-safe
+  name: Demo Safe Component
+  version: 1.0.0
+  category: demo
+  edition: community
+  description: Guvenli executor test componenti
+
+requirements:
+  os:
+    - windows
+    - linux
+  arch:
+    - x64
+
+installer:
+  runtime_adapter: simulated
+  mode: plan_only
+  cache_dir: cache/demo/safe
+  target_dir: apps/demo/safe
+
+actions:
+  - type: ensure_directory
+    name: ensure_demo_directory
+    target: apps/demo/safe
+  - type: write_file
+    name: write_demo_marker
+    target: apps/demo/safe/jhoster.demo
+    content: demo-safe component executed

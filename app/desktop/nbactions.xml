@@ -1,0 +1,47 @@
+<!--
+# 📄 Dosya Yolu: E:\JHoster\app\desktop\nbactions.xml
+# 📌 Amac: NetBeans Maven run action icin dogru JavaFX main class degerini sabitler
+# 📌 Modul - XML
+# Version: 3.2.3
+# Aciklama: packageClassName placeholder hatasini engeller ve exec.mainClass degerini MainApp yapar
+# Bagimli Oldugu Katman: Config
+-->
+<actions>
+    <action>
+        <actionName>run</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+        </goals>
+        <properties>
+            <exec.vmArgs></exec.vmArgs>
+            <exec.appArgs></exec.appArgs>
+            <exec.mainClass>com.jhoster.desktop.MainApp</exec.mainClass>
+            <packageClassName>com.jhoster.desktop.MainApp</packageClassName>
+            <exec.classpathScope>runtime</exec.classpathScope>
+            <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+        </properties>
+    </action>
+    <action>
+        <actionName>debug</actionName>
+        <packagings>
+            <packaging>jar</packaging>
+        </packagings>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:3.5.1:exec</goal>
+        </goals>
+        <properties>
+            <exec.vmArgs>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+            <exec.appArgs></exec.appArgs>
+            <exec.mainClass>com.jhoster.desktop.MainApp</exec.mainClass>
+            <packageClassName>com.jhoster.desktop.MainApp</packageClassName>
+            <exec.classpathScope>runtime</exec.classpathScope>
+            <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+            <jpda.listen>true</jpda.listen>
+        </properties>
+    </action>
+</actions>

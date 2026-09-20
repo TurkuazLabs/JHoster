@@ -1,0 +1,50 @@
+# 📄 Dosya Yolu: E:\JHoster\modules\\community\\runtime\\nginx-1.26\\manifest.yml
+# 📌 Amac: Nginx Runtime kurulum planini tanimlar
+# 📌 Modul - YAML
+# Version: 1.3.0
+# Aciklama: Guvenli executor destekli plan only ve service adapter ve runtime family manifest dosyasi
+# Bagimli Oldugu Katman: Config
+
+package:
+  code: nginx-1.26
+  name: Nginx Runtime
+  version: 1.26
+  category: runtime
+  edition: community
+  description: Nginx Runtime icin plan only runtime tanimi
+
+requirements:
+  os:
+    - windows
+  arch:
+    - x64
+
+installer:
+  mode: plan_only
+  cache_dir: cache/runtime/nginx/1.26
+  runtime_adapter: nginx
+  runtime_family: nginx
+  target_dir: apps/runtime/nginx/1.26
+
+actions:
+  - type: check
+    name: check_executor_policy
+    command: echo Checking executor policy
+  - type: ensure_directory
+    name: ensure_cache_directory
+    target: cache/runtime/nginx/1.26
+  - type: ensure_directory
+    name: ensure_target_directory
+    target: apps/runtime/nginx/1.26
+  - type: download
+    name: download_archive
+    source: official_url_pending
+    target: cache/runtime/nginx/1.26/nginx.zip
+  - type: extract
+    name: extract_archive
+    source: cache/runtime/nginx/1.26/nginx.zip
+    target: apps/runtime/nginx/1.26
+  - type: write_file
+    name: write_runtime_marker
+    target: apps/runtime/nginx/1.26/jhoster.runtime
+    content: nginx-1.26 runtime registered

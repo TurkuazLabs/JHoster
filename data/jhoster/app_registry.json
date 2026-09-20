@@ -1,0 +1,517 @@
+{
+  "apps": [
+    {
+      "code": "apache",
+      "name": "Apache HTTP Server",
+      "version": "2.4.66",
+      "category": "apache",
+      "runtime_adapter": "apache",
+      "runtime_family": "apache",
+      "install_path": "bin/apache/httpd-2.4.66-260223-Win64-VS18",
+      "status": "installed",
+      "description": "Desktop-managed Apache web server. Uses shared www document root when selected as active web server.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "httpd.exe",
+        "working_dir": "bin",
+        "executable_candidates": [
+          "bin/httpd.exe",
+          "bin/apache.exe"
+        ],
+        "start_args": [
+          "-k",
+          "start"
+        ],
+        "stop_args": [
+          "-k",
+          "stop"
+        ],
+        "status_args": [
+          "-v"
+        ]
+      },
+      "first_installed_at": "2026-05-12T21:27:12.035398+00:00",
+      "portable_folder_name": "httpd-2.4.66-260223-Win64-VS18",
+      "portable_source": "portable-bin-scan",
+      "updated_at": "2026-05-12T21:27:12.035398+00:00",
+      "ports": {
+        "http": 80,
+        "https": 443
+      },
+      "shared_document_root": "www"
+    },
+    {
+      "code": "nginx",
+      "name": "Nginx Web Server",
+      "version": "planned",
+      "category": "nginx",
+      "runtime_adapter": "simulated",
+      "runtime_family": "nginx",
+      "install_path": "bin/nginx",
+      "status": "installed",
+      "description": "Desktop-managed Nginx web server. Uses shared www document root when selected as active web server.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "nginx.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "nginx.exe"
+        ],
+        "start_args": [],
+        "stop_args": [
+          "-s",
+          "quit"
+        ],
+        "status_args": [
+          "-v"
+        ]
+      },
+      "ports": {
+        "http": 80,
+        "https": 443
+      },
+      "shared_document_root": "www"
+    },
+    {
+      "code": "mysql",
+      "name": "MySQL Database Server",
+      "version": "planned",
+      "category": "mysql",
+      "runtime_adapter": "simulated",
+      "runtime_family": "mysql",
+      "install_path": "bin/mysql",
+      "status": "installed",
+      "description": "Safe desktop-managed MySQL service state placeholder.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "mysqld.exe",
+        "working_dir": "bin",
+        "executable_candidates": [
+          "bin/mysqld.exe"
+        ],
+        "start_args": [
+          "--console"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "mailpit",
+      "name": "Mailpit Mail Catcher",
+      "version": "planned",
+      "category": "mail",
+      "runtime_adapter": "simulated",
+      "runtime_family": "mailpit",
+      "install_path": "bin/mailpit",
+      "status": "installed",
+      "description": "Safe desktop-managed Mailpit service state placeholder.",
+      "ports": {
+        "smtp": 1025,
+        "web": 8025
+      },
+      "real_process": {
+        "enabled": false,
+        "process_name": "mailpit.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "mailpit.exe",
+          "bin/mailpit.exe"
+        ],
+        "start_args": [
+          "--smtp",
+          "127.0.0.1:1025",
+          "--listen",
+          "127.0.0.1:8025"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "php",
+      "name": "PHP Runtime",
+      "version": "8.3.30",
+      "category": "php",
+      "runtime_adapter": "php",
+      "runtime_family": "php",
+      "install_path": "bin/php/php-8.3.30-Win32-vs16-x64",
+      "status": "installed",
+      "description": "Safe desktop-managed PHP runtime service state placeholder.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "php-cgi.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "php-cgi.exe",
+          "php.exe"
+        ],
+        "start_args": [
+          "-b",
+          "127.0.0.1:9000"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "-v"
+        ]
+      },
+      "first_installed_at": "2026-05-12T21:27:21.184816+00:00",
+      "portable_folder_name": "php-8.3.30-Win32-vs16-x64",
+      "portable_source": "portable-bin-scan",
+      "updated_at": "2026-05-12T21:27:21.184816+00:00"
+    },
+    {
+      "code": "php-8.3",
+      "name": "PHP 8.3 Runtime",
+      "version": "8.3",
+      "category": "runtime",
+      "runtime_adapter": "php",
+      "runtime_family": "php",
+      "install_path": "bin/php/php-8.3",
+      "status": "installed",
+      "edition": "cli-cgi",
+      "description": "Managed PHP 8.3 runtime placeholder for Runtime Manager.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "php-cgi.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "php-cgi.exe",
+          "php.exe"
+        ],
+        "start_args": [
+          "-b",
+          "127.0.0.1:9000"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "-v"
+        ]
+      }
+    },
+    {
+      "code": "php-8.2",
+      "name": "PHP 8.2 Runtime",
+      "version": "8.2",
+      "category": "runtime",
+      "runtime_adapter": "php",
+      "runtime_family": "php",
+      "install_path": "bin/php/php-8.2",
+      "status": "installed",
+      "edition": "cli-cgi",
+      "description": "Managed PHP 8.2 runtime placeholder for Runtime Manager.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "php-cgi.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "php-cgi.exe",
+          "php.exe"
+        ],
+        "start_args": [
+          "-b",
+          "127.0.0.1:9000"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "-v"
+        ]
+      }
+    },
+    {
+      "code": "node-20",
+      "name": "Node.js 20 Runtime",
+      "version": "20",
+      "category": "runtime",
+      "runtime_adapter": "node",
+      "runtime_family": "node",
+      "install_path": "bin/nodejs/node-20",
+      "status": "installed",
+      "edition": "lts",
+      "description": "Managed Node.js 20 runtime placeholder for Runtime Manager.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "node.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "node.exe"
+        ],
+        "start_args": [
+          "--version"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "node-22",
+      "name": "Node.js 22 Runtime",
+      "version": "22",
+      "category": "runtime",
+      "runtime_adapter": "node",
+      "runtime_family": "node",
+      "install_path": "bin/nodejs/node-22",
+      "status": "installed",
+      "edition": "current",
+      "description": "Managed Node.js 22 runtime placeholder for Runtime Manager.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "node.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "node.exe"
+        ],
+        "start_args": [
+          "--version"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "python-3.12",
+      "name": "Python 3.12 Runtime",
+      "version": "3.12",
+      "category": "runtime",
+      "runtime_adapter": "python",
+      "runtime_family": "python",
+      "install_path": "bin/python/python-3.12",
+      "status": "installed",
+      "edition": "cpython",
+      "description": "Managed Python 3.12 runtime placeholder for Runtime Manager.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "python.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "python.exe"
+        ],
+        "start_args": [
+          "--version"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "python-3.11",
+      "name": "Python 3.11 Runtime",
+      "version": "3.11",
+      "category": "runtime",
+      "runtime_adapter": "python",
+      "runtime_family": "python",
+      "install_path": "bin/python/python-3.11",
+      "status": "installed",
+      "edition": "cpython",
+      "description": "Managed Python 3.11 runtime placeholder for Runtime Manager.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "python.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "python.exe"
+        ],
+        "start_args": [
+          "--version"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "redis",
+      "name": "Redis Server",
+      "version": "planned",
+      "category": "cache",
+      "runtime_adapter": "simulated",
+      "runtime_family": "redis",
+      "install_path": "bin/redis",
+      "status": "installed",
+      "description": "Portable Redis service placeholder for Laragon-style bin layout.",
+      "ports": {
+        "server": 6379
+      },
+      "real_process": {
+        "enabled": false,
+        "process_name": "redis-server.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "redis-server.exe",
+          "bin/redis-server.exe"
+        ],
+        "start_args": [
+          "redis.windows.conf"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "--version"
+        ]
+      }
+    },
+    {
+      "code": "memcached",
+      "name": "Memcached Server",
+      "version": "planned",
+      "category": "cache",
+      "runtime_adapter": "simulated",
+      "runtime_family": "memcached",
+      "install_path": "bin/memcached",
+      "status": "installed",
+      "description": "Portable Memcached service placeholder for Laragon-style bin layout.",
+      "ports": {
+        "server": 11211
+      },
+      "real_process": {
+        "enabled": false,
+        "process_name": "memcached.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "memcached.exe"
+        ],
+        "start_args": [
+          "-p",
+          "11211"
+        ],
+        "stop_args": [],
+        "status_args": [
+          "-h"
+        ]
+      }
+    },
+    {
+      "code": "sendmail",
+      "name": "Sendmail Tool",
+      "version": "planned",
+      "category": "mail",
+      "runtime_adapter": "simulated",
+      "runtime_family": "sendmail",
+      "install_path": "bin/sendmail",
+      "status": "installed",
+      "description": "Portable Sendmail placeholder for local mail tooling.",
+      "real_process": {
+        "enabled": false,
+        "process_name": "sendmail.exe",
+        "working_dir": "",
+        "executable_candidates": [
+          "sendmail.exe"
+        ],
+        "start_args": [],
+        "stop_args": [],
+        "status_args": [
+          "--help"
+        ]
+      }
+    },
+    {
+      "code": "heidisql",
+      "name": "HeidiSQL Portable",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "database-tool",
+      "install_path": "bin/heidisql",
+      "status": "installed",
+      "description": "Portable database manager opened by Veritabani quick action."
+    },
+    {
+      "code": "cmder",
+      "name": "Cmder Portable",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "terminal",
+      "install_path": "bin/cmder",
+      "status": "installed",
+      "description": "Portable terminal tool for Laragon-style bin layout."
+    },
+    {
+      "code": "composer",
+      "name": "Composer",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "composer",
+      "install_path": "bin/composer",
+      "status": "installed",
+      "description": "Composer placeholder for PHP package workflows."
+    },
+    {
+      "code": "git",
+      "name": "Git Portable",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "git",
+      "install_path": "bin/git",
+      "status": "installed",
+      "description": "Git portable placeholder for project cloning and tooling."
+    },
+    {
+      "code": "ngrok",
+      "name": "Ngrok",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "tunnel",
+      "install_path": "bin/ngrok",
+      "status": "installed",
+      "description": "Ngrok placeholder for quick share/tunnel workflows."
+    },
+    {
+      "code": "notepad-plus-plus",
+      "name": "Notepad++ Portable",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "editor",
+      "install_path": "bin/notepad++",
+      "status": "installed",
+      "description": "Notepad++ placeholder for quick config editing."
+    },
+    {
+      "code": "cronical",
+      "name": "Cronical",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "scheduler",
+      "install_path": "bin/cronical",
+      "status": "installed",
+      "description": "Cronical scheduler placeholder."
+    },
+    {
+      "code": "telnet",
+      "name": "Telnet Tool",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "network",
+      "install_path": "bin/telnet",
+      "status": "installed",
+      "description": "Telnet utility placeholder."
+    },
+    {
+      "code": "yarn",
+      "name": "Yarn",
+      "version": "planned",
+      "category": "tool",
+      "runtime_adapter": "portable_tool",
+      "runtime_family": "node-package-manager",
+      "install_path": "bin/yarn",
+      "status": "installed",
+      "description": "Yarn placeholder for Node package workflows."
+    }
+  ]
+}

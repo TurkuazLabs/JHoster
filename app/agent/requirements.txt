@@ -1,0 +1,11 @@
+# 📄 Dosya Yolu: E:\JHoster\app\agent\requirements.txt
+# 📌 Amac: JHoster agent Python paket bagimliliklarini tanimlar
+# 📌 Modul - FileType
+# Version: 1.0.0
+# Aciklama: FastAPI, Uvicorn, YAML ve sistem bilgisi bagimliliklari
+# Bagimli Oldugu Katman: Tool
+
+fastapi>=0.115.0,<1.0.0
+uvicorn[standard]>=0.30.0,<1.0.0
+PyYAML>=6.0.0,<7.0.0
+psutil>=6.0.0,<8.0.0

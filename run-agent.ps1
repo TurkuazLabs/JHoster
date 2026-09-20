@@ -20,5 +20,7 @@ if (!(Test-Path $ActivatePath)) {
 }
 
 Set-Location $AgentPath
+
 & $ActivatePath
+
 python serve.py

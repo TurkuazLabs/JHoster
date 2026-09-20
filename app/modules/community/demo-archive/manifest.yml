@@ -1,0 +1,43 @@
+# 📄 Dosya Yolu: E:\JHoster\modules\community\demo-archive\manifest.yml
+# 📌 Amac: Guvenli cache zip extract test component manifestini tanimlar
+# 📌 Modul - FileType
+# Version: 1.0.0
+# Aciklama: SHA256 dogrulama ve zip extract executor test planidir
+# Bagimli Oldugu Katman: Config
+
+package:
+  code: demo-archive
+  name: Demo Archive Extract
+  version: 1.0.0
+  category: demo
+  edition: community
+  description: Cache icindeki ornek zip dosyasini checksum ile dogrulayip guvenli extract eder
+
+requirements:
+  platform: windows
+  mode: local_cache
+
+installer:
+  runtime_adapter: simulated
+  mode: safe_archive
+  plan_only: false
+  external_download: false
+
+actions:
+  - type: verify_checksum
+    name: Verify demo archive SHA256
+    source: cache/community/demo-archive/demo_payload.zip
+    algorithm: sha256
+    checksum: abf7585db8965f6ce082ba865f192985eabcf6cb5bcaf7c6c27a943e2557d8b7
+
+  - type: ensure_directory
+    name: Prepare demo archive app folder
+    target: apps/demo-archive
+
+  - type: extract
+    name: Extract demo archive safely
+    source: cache/community/demo-archive/demo_payload.zip
+    target: apps/demo-archive
+    algorithm: sha256
+    checksum: abf7585db8965f6ce082ba865f192985eabcf6cb5bcaf7c6c27a943e2557d8b7
+    max_bytes: 1048576

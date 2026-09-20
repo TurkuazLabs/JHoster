@@ -1,0 +1,14 @@
+# 📄 Dosya Yolu: config/update.ignore
+# 📌 Amac: Guvenli guncellemede korunacak klasorleri listeler
+# 📌 Modul - Ignore
+# Version: 3.2.0
+# Aciklama: Kullanici verisi ve runtime kurulumlari update sirasinda korunur
+
+Bagimli Oldugu Katman: Config
+
+apps/
+user_www/
+cache/
+logs/
+snapshot/
+config/settings.yml

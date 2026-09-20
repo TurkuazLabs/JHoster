@@ -1,0 +1,80 @@
+{
+  "processes": [
+    {
+      "code": "apache",
+      "name": "Apache HTTP Server",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/apache",
+      "active_web_server": "apache",
+      "shared_document_root": "www"
+    },
+    {
+      "code": "nginx",
+      "name": "Nginx Web Server",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/nginx",
+      "active_web_server": "apache",
+      "shared_document_root": "www"
+    },
+    {
+      "code": "mysql",
+      "name": "MySQL Database Server",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/mysql"
+    },
+    {
+      "code": "php",
+      "name": "PHP Runtime",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/php"
+    },
+    {
+      "code": "mailpit",
+      "name": "Mailpit Mail Catcher",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/mailpit"
+    },
+    {
+      "code": "redis",
+      "name": "Redis Server",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/redis"
+    },
+    {
+      "code": "memcached",
+      "name": "Memcached Server",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/memcached"
+    },
+    {
+      "code": "sendmail",
+      "name": "Sendmail Tool",
+      "version": "planned",
+      "status": "stopped",
+      "mode": "simulated",
+      "adapter_key": "simulated",
+      "install_path": "bin/sendmail"
+    }
+  ]
+}
