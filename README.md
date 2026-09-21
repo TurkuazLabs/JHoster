@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\README.md
 # 📌 Amac: JHoster sade root layout ana okuma dosyasi
 # 📌 Modul - Markdown
-# Version: 3.78.0
+# Version: 3.79.0
 # Aciklama: JHoster root layout, New Site stack provisioning plan, agent, desktop, Settings/Logs ve API audit akislarini aciklar
 
 Bagimli Oldugu Katman: Service | Tool | Config | View
@@ -319,3 +319,12 @@ Bu surumde ana sol sidebar menu korunmustur. Settings penceresi icinde tab menu 
 - Eksik paketler Package Downloader ile hazirlanir, runtime gerekirse aktive edilir, Quick App create sonrasinda Apache/Nginx profile ve unified workflow calisir.
 - MySQL seciliyse `mysql.exe` uzerinden database create adapter calisir. Admin sifresi query/registry/response icinde saklanmaz.
 - Ayrintilar: `app/docs/PROVISIONING_APPLY.md`.
+
+
+## v3.79.0 Desktop Provisioning UX
+
+- New Site `Plan Site` butonu artik provisioning apply preflight sonucunu kullanir.
+- `Create Test Site` gercek apply oncesinde kullanici onayi ister.
+- MySQL seciliyse admin sifresi PasswordField ile yalniz request body icin alinir; Desktop loguna yazilmaz.
+- Apply istegi arka plan JavaFX Task uzerinde calisir; progress state ve apply run/step ozeti UI'da gorunur.
+- Apply basarisiz olursa Workflow ekranina gecis sunulur; mevcut web workflow rollback guard korunur.

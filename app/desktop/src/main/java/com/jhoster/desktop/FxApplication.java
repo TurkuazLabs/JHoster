@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\FxApplication.java
 // # 📌 Amac: JHoster JavaFX desktop launcher sahnesini modern tema ile olusturur
 // # 📌 Modul - Java
-// # Version: 3.77.0
+// # Version: 3.79.0
 // # Aciklama: Direkt desktop gelistirme acilisi icin JavaFX Application yasam dongusunu yonetir; ana giris artik LauncherBootstrapApplication uzerindedir
 // # Bagimli Oldugu Katman: Controller
 
@@ -37,7 +37,7 @@ public final class FxApplication extends Application {
         Scene scene = new Scene(controller.createView(), windowWidth, windowHeight);
         applyTheme(scene);
 
-        stage.setTitle(APP_TITLE + " 3.77.0 " + APP_EDITION);
+        stage.setTitle(APP_TITLE + " 3.79.0 " + APP_EDITION);
         new BrandingResourceTool().loadFxIcon().ifPresent(icon -> stage.getIcons().add(icon));
         stage.setMinWidth(minWindowWidth);
         stage.setMinHeight(minWindowHeight);

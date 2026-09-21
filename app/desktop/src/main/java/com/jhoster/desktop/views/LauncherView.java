@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\views\LauncherView.java
 // # 📌 Amac: JHoster Desktop modern launcher ana gorunumunu olusturur
 // # 📌 Modul - Java
-// # Version: 3.77.0
+// # Version: 3.79.0
 // # Aciklama: Sol sidebar ana menu, temiz status topbar, Settings/Logs tablari ve calisan aksiyon odakli modern UI saglar
 // # Bagimli Oldugu Katman: View
 
@@ -10,6 +10,7 @@ package com.jhoster.desktop.views;
 import com.jhoster.desktop.config.DesktopApiConfig;
 import com.jhoster.desktop.models.RuntimeManagerSummary;
 import com.jhoster.desktop.models.QuickAppSummary;
+import com.jhoster.desktop.models.ProvisioningApplySummary;
 import com.jhoster.desktop.models.PackageDownloadSummary;
 import com.jhoster.desktop.models.ServiceManagerSummary;
 import com.jhoster.desktop.models.DesktopServiceSelectionSettings;
@@ -22,6 +23,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -32,6 +34,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.control.Tab;
@@ -83,7 +86,7 @@ public class LauncherView {
     private static final String SIMPLE_MODE_MENU_TEXT = "Launchpad";
     private static final String SIMPLE_MODE_HINT_TEXT = "Menus moved to the left. Each section opens in a clean focused page.";
     private static final String DECK_TITLE_TEXT = "JHoster Desktop";
-    private static final String DECK_VERSION_TEXT = "v3.77.0";
+    private static final String DECK_VERSION_TEXT = "v3.79.0";
     private static final String DECK_EDITION_TEXT = "Community";
     private static final String LICENSE_DEFAULT_USAGE_TEXT = "Sites 0 / 5";
     private static final String LICENSE_DEFAULT_HINT_TEXT = "Community includes 5 active sites.";
@@ -697,6 +700,10 @@ public class LauncherView {
     private final Label quickAppStackSummaryValue = new Label("Apache + MySQL + PHP");
     private final Label quickAppProvisioningSummaryValue = new Label(SUMMARY_VALUE_EMPTY);
     private final Label quickAppDatabaseSummaryValue = new Label(SUMMARY_VALUE_EMPTY);
+    private final Label quickAppApplyStepsValue = new Label(SUMMARY_VALUE_EMPTY);
+    private final Label quickAppApplyRunValue = new Label(SUMMARY_VALUE_EMPTY);
+    private final Label quickAppApplyStateValue = new Label("Ready");
+    private final ProgressBar quickAppApplyProgressBar = new ProgressBar(0.0);
     private final TextField quickAppProjectCodeField = new TextField(DesktopApiConfig.DEFAULT_QUICK_APP_PROJECT_CODE);
     private final TextField quickAppProjectNameField = new TextField(DesktopApiConfig.DEFAULT_QUICK_APP_PROJECT_NAME);
     private final TextField quickAppTemplateCodeField = new TextField(DesktopApiConfig.DEFAULT_QUICK_APP_TEMPLATE_CODE);
@@ -2769,6 +2776,8 @@ public class LauncherView {
             buildSummaryPill(LABEL_QUICK_APP_STACK, quickAppStackSummaryValue),
             buildSummaryPill("Provisioning", quickAppProvisioningSummaryValue),
             buildSummaryPill("Database", quickAppDatabaseSummaryValue),
+            buildSummaryPill("Apply Steps", quickAppApplyStepsValue),
+            buildSummaryPill("Apply Run", quickAppApplyRunValue),
             buildSummaryPill(LABEL_HOSTS_AUTO_STATUS, quickHostsAutoHealthValue)
         );
 
@@ -2797,7 +2806,14 @@ public class LauncherView {
         quickAppCreateButton.getStyleClass().add(STYLE_PRIMARY_BUTTON);
         actions.getChildren().addAll(quickHostsAutoInspectButton, quickAppPlanButton, quickAppCreateButton);
 
-        card.getChildren().addAll(header, strip, formGrid, buildQuickAppStackSelectionPanel(), hostsAutoHint, actions);
+        HBox applyProgressRow = new HBox(10);
+        applyProgressRow.setAlignment(Pos.CENTER_LEFT);
+        quickAppApplyProgressBar.setPrefWidth(220);
+        quickAppApplyProgressBar.setProgress(0.0);
+        quickAppApplyStateValue.getStyleClass().add(STYLE_CARD_TEXT);
+        applyProgressRow.getChildren().addAll(quickAppApplyProgressBar, quickAppApplyStateValue);
+
+        card.getChildren().addAll(header, strip, formGrid, buildQuickAppStackSelectionPanel(), hostsAutoHint, actions, applyProgressRow);
         return card;
     }
 
@@ -3165,6 +3181,10 @@ public class LauncherView {
 
     public boolean isQuickAppMailpitEnabled() {
         return quickAppMailpitCheckBox.isSelected();
+    }
+
+    public String getQuickAppStackLabel() {
+        return quickAppStackSummaryValue.getText();
     }
 
     public String getRuntimeApacheCode() {
@@ -4568,6 +4588,82 @@ public class LauncherView {
         updateLabelIfPresent(quickAppStackSummaryValue, summary.hasStackLabel(), summary.getStackLabel());
         updateLabelIfPresent(quickAppProvisioningSummaryValue, summary.hasProvisioningStatus(), summary.getProvisioningStatus());
         updateLabelIfPresent(quickAppDatabaseSummaryValue, summary.hasDatabaseLabel(), summary.getDatabaseLabel());
+    }
+
+    public void updateProvisioningApplySummary(ProvisioningApplySummary summary) {
+        if (summary == null) {
+            return;
+        }
+
+        updateLabelIfPresent(quickAppLastStatusValue, summary.hasStatus(), summary.getStatus());
+        quickAppProvisioningSummaryValue.setText(summary.isReadyForApply() ? "Ready" : summary.getStatus());
+        if (summary.hasStepCount()) {
+            quickAppApplyStepsValue.setText(String.valueOf(summary.getStepCount()));
+        } else {
+            quickAppApplyStepsValue.setText(summary.isReadyForApply() ? "Ready" : "-");
+        }
+        quickAppApplyRunValue.setText(summary.hasRunId() ? shortenRunId(summary.getRunId()) : "-");
+    }
+
+    public void setProvisioningApplyRunning(boolean running) {
+        quickAppCreateButton.setDisable(running);
+        quickAppPlanButton.setDisable(running);
+        quickAppApplyProgressBar.setProgress(running ? ProgressBar.INDETERMINATE_PROGRESS : 0.0);
+        quickAppApplyStateValue.setText(running ? "Applying provisioning..." : "Ready");
+    }
+
+    public boolean showProvisioningApplyConfirmation(ProvisioningApplySummary summary, String stackLabel, String domain) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Apply New Site");
+        alert.setHeaderText("Apply the provisioning plan?");
+        alert.setContentText(
+            "Project: " + (summary == null ? "" : summary.getProjectCode())
+                + "\nDomain: " + (domain == null ? "" : domain)
+                + "\nStack: " + (stackLabel == null ? "" : stackLabel)
+                + "\n\nJHoster will create the project and apply the selected local stack."
+        );
+        ButtonType applyButton = new ButtonType("Apply", ButtonBar.ButtonData.OK_DONE);
+        alert.getButtonTypes().setAll(applyButton, ButtonType.CANCEL);
+        return alert.showAndWait().filter(applyButton::equals).isPresent();
+    }
+
+    public Optional<String> promptMysqlAdminPassword() {
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitle("MySQL Credentials");
+        dialog.setHeaderText("Enter the local MySQL administrator password");
+        ButtonType continueButton = new ButtonType("Continue", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(continueButton, ButtonType.CANCEL);
+
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("MySQL root password");
+        VBox content = new VBox(8);
+        Label hint = new Label("The password is sent only in the apply request body and is not stored by JHoster.");
+        hint.setWrapText(true);
+        content.getChildren().addAll(hint, passwordField);
+        dialog.getDialogPane().setContent(content);
+        dialog.setResultConverter(buttonType -> buttonType == continueButton ? passwordField.getText() : null);
+        return dialog.showAndWait();
+    }
+
+    public void showProvisioningPlanBlocked(ProvisioningApplySummary summary) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Provisioning Not Ready");
+        alert.setHeaderText("The site cannot be applied yet");
+        alert.setContentText(summary == null ? "Provisioning preflight reported blockers." : summary.getMessage());
+        alert.showAndWait();
+    }
+
+    public boolean showProvisioningFailureDialog(ProvisioningApplySummary summary) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Provisioning Failed");
+        alert.setHeaderText("The provisioning apply did not complete");
+        alert.setContentText(
+            (summary == null ? "Apply failed." : summary.getMessage())
+                + "\n\nThe web server workflow keeps its rollback guard. Open Workflow to inspect the run."
+        );
+        ButtonType workflowButton = new ButtonType("Open Workflow", ButtonBar.ButtonData.OTHER);
+        alert.getButtonTypes().setAll(workflowButton, ButtonType.CLOSE);
+        return alert.showAndWait().filter(workflowButton::equals).isPresent();
     }
 
     public void updateWorkflowSummary(WorkflowDesktopSummary summary) {

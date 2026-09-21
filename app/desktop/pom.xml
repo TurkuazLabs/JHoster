@@ -2,7 +2,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\desktop\pom.xml
 # 📌 Amac: JHoster Desktop Maven JavaFX build ve runtime ayarlarini yonetir
 # 📌 Modul - XML
-# Version: 3.60.0
+# Version: 3.79.0
 # Aciklama: Java 21, OpenJFX runtime dependency, NetBeans exec ve desktop dynamic dashboard, service manager, web server port guard, runtime manager, quick app ve workflow bridge build ayari
 # Bagimli Oldugu Katman: Config
 -->
@@ -14,7 +14,7 @@
 
     <groupId>com.jhoster</groupId>
     <artifactId>jhoster-desktop</artifactId>
-    <version>3.77.0</version>
+    <version>3.79.0</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

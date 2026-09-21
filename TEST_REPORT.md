@@ -1,10 +1,20 @@
 # 📄 Dosya Yolu: E:\JHoster\TEST_REPORT.md
-# 📌 Amac: JHoster v3.78.0 test raporu
+# 📌 Amac: JHoster v3.79.0 test raporu
 # 📌 Modul - Markdown
-# Version: 3.78.0
+# Version: 3.79.0
 # Aciklama: Release cleanup, API route audit, Logs tab UI, Community plan gate ve temel static testleri kaydeder
 
 Bagimli Oldugu Katman: Service | Tool | Config | View
+
+
+## v3.79.0 Desktop Provisioning UX
+
+- Provisioning Desktop core `javac --release 21`: basarili.
+- DesktopApiConfig + DesktopHttpResult + ProvisioningApplySummary + JsonTextExtractorTool + HttpRequestTool + provisioning formatter/service compile: basarili.
+- LauncherController provisioning async Task token/brace guard: basarili.
+- LauncherView apply confirmation, MySQL PasswordField, progress state ve failure/workflow dialog token/brace guard: basarili.
+- `HttpRequestTool.postJson` uzun provisioning istekleri icin 300 saniye request timeout ile ayrildi.
+- Maven tam JavaFX compile: bu ortamda `mvn` kurulu olmadigi icin calistirilamadi.
 
 
 ## v3.78.0 Provisioning Apply

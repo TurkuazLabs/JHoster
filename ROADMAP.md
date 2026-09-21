@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\ROADMAP.md
 # 📌 Amac: JHoster gelistirme yol haritasini tanimlar
 # 📌 Modul - Markdown
-# Version: 3.78.0
+# Version: 3.79.0
 # Aciklama: v3.77.0 stack provisioning plan tamamlanmasini ve sonraki gercek apply adimlarini tanimlar
 # Bagimli Oldugu Katman: View
 
@@ -9,6 +9,7 @@
 
 ## Tamamlanan
 
+- v3.79.0: Desktop New Site Wizard provisioning onayi, async apply progress ozeti ve failure/workflow UX baglantisi
 - v3.78.0: Kullanici onayli provisioning apply, package/runtime hazirligi, web workflow run ve MySQL database create adapter
 - v3.77.0: New Site stack provisioning plan, installer eslemeleri, web workflow plan baglantisi ve MySQL database wizard plan
 - v3.76.1: Desktop aktif kaynak header path duzeltmeleri, source header guard ve roadmap tutarlilik patch
@@ -38,7 +39,7 @@
 
 ## Siradaki
 
-- v3.79.0: Desktop New Site Wizard icine apply onay ekrani, adim ilerleme paneli ve failure/rollback UX baglantisi
+- v3.80.0: Provisioning run detay endpointi, adim bazli canli durum/polling ve apply retry/cleanup guard
 
 - v3.13.0: hosts file plan layer
 - v3.14.0: nginx config apply adapter hazirligi

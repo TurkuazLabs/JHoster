@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\controllers\LauncherController.java
 // # 📌 Amac: JavaFX launcher buton olaylarini servis katmanina aktarir
 // # 📌 Modul - Java
-// # Version: 3.76.0
+// # Version: 3.79.0
 // # Aciklama: Agent lifecycle, dinamik UI sayfalari, dev mode gizli endpoint menusu, package downloader, sol menu normal modu, ayarlar menusu, servis secimli Start All akisi ve workflow, hosts auto ve New Site wizard aksiyonlarini ince Controller katmaninda baglar
 // # Bagimli Oldugu Katman: Controller
 
@@ -10,6 +10,7 @@ package com.jhoster.desktop.controllers;
 import com.jhoster.desktop.config.DesktopApiConfig;
 import com.jhoster.desktop.models.RuntimeManagerSummary;
 import com.jhoster.desktop.models.QuickAppSummary;
+import com.jhoster.desktop.models.ProvisioningApplySummary;
 import com.jhoster.desktop.models.PackageDownloadSummary;
 import com.jhoster.desktop.models.ServiceManagerSummary;
 import com.jhoster.desktop.models.DesktopServiceSelectionSettings;
@@ -21,6 +22,7 @@ import com.jhoster.desktop.services.AgentProcessService;
 import com.jhoster.desktop.services.PanelStatusService;
 import com.jhoster.desktop.services.RuntimeManagerDesktopService;
 import com.jhoster.desktop.services.QuickAppDesktopService;
+import com.jhoster.desktop.services.ProvisioningApplyDesktopService;
 import com.jhoster.desktop.services.PackageDownloadDesktopService;
 import com.jhoster.desktop.services.QuickActionDesktopService;
 import com.jhoster.desktop.services.ServiceManagerDesktopService;
@@ -30,6 +32,7 @@ import com.jhoster.desktop.services.LicenseDesktopService;
 import com.jhoster.desktop.services.HostsAutoDesktopService;
 import com.jhoster.desktop.tools.BrowserTool;
 import com.jhoster.desktop.views.LauncherView;
+import javafx.concurrent.Task;
 import javafx.scene.Parent;
 
 public class LauncherController {
@@ -59,6 +62,7 @@ public class LauncherController {
     private final PanelStatusService panelStatusService;
     private final RuntimeManagerDesktopService runtimeManagerDesktopService;
     private final QuickAppDesktopService quickAppDesktopService;
+    private final ProvisioningApplyDesktopService provisioningApplyDesktopService;
     private final PackageDownloadDesktopService packageDownloadDesktopService;
     private final QuickActionDesktopService quickActionDesktopService;
     private final ServiceManagerDesktopService serviceManagerDesktopService;
@@ -80,6 +84,7 @@ public class LauncherController {
         this.panelStatusService = new PanelStatusService();
         this.runtimeManagerDesktopService = new RuntimeManagerDesktopService();
         this.quickAppDesktopService = new QuickAppDesktopService();
+        this.provisioningApplyDesktopService = new ProvisioningApplyDesktopService();
         this.packageDownloadDesktopService = new PackageDownloadDesktopService();
         this.quickActionDesktopService = new QuickActionDesktopService();
         this.serviceManagerDesktopService = new ServiceManagerDesktopService();
@@ -301,31 +306,8 @@ public class LauncherController {
         launcherView.setOnRuntimeMailpitActivate(event -> appendRuntimeSummary(runtimeManagerDesktopService.activateSummary(launcherView.getRuntimeMailpitCode())));
         launcherView.setOnRuntimeMailpitActivatePortable(event -> appendRuntimeSummary(runtimeManagerDesktopService.activatePortableSummary(DesktopApiConfig.RUNTIME_FAMILY_MAILPIT, launcherView.getRuntimeMailpitFolder())));
         launcherView.setOnQuickAppTemplates(event -> appendQuickAppSummary(quickAppDesktopService.templatesSummary()));
-        launcherView.setOnQuickAppPlan(event -> appendQuickAppSummary(quickAppDesktopService.planSummary(
-            launcherView.getQuickAppProjectCode(),
-            launcherView.getQuickAppProjectName(),
-            launcherView.getQuickAppTemplateCode(),
-            launcherView.getQuickAppDomain(),
-            launcherView.getQuickAppPort(),
-            launcherView.getQuickAppWebServer(),
-            launcherView.isQuickAppMysqlEnabled(),
-            launcherView.isQuickAppPhpEnabled(),
-            launcherView.isQuickAppMailpitEnabled()
-        )));
-        launcherView.setOnQuickAppCreate(event -> {
-            appendQuickAppSummary(quickAppDesktopService.createSummary(
-                launcherView.getQuickAppProjectCode(),
-                launcherView.getQuickAppProjectName(),
-                launcherView.getQuickAppTemplateCode(),
-                launcherView.getQuickAppDomain(),
-                launcherView.getQuickAppPort(),
-                launcherView.getQuickAppWebServer(),
-                launcherView.isQuickAppMysqlEnabled(),
-                launcherView.isQuickAppPhpEnabled(),
-                launcherView.isQuickAppMailpitEnabled()
-            ));
-            refreshHostsAutoStatus();
-        });
+        launcherView.setOnQuickAppPlan(event -> appendProvisioningApplySummary(buildProvisioningPlanSummary()));
+        launcherView.setOnQuickAppCreate(event -> applyProvisioningFromWizard());
         launcherView.setOnHostsAutoInspect(event -> refreshHostsAutoStatus());
         launcherView.setOnHostsAutoRepairPlan(event -> appendHostsAutoSummaryWithLog(LOG_HOSTS_AUTO_REPAIR_PLAN, hostsAutoDesktopService.repairPlanSummary()));
         launcherView.setOnHostsAutoRepair(event -> appendHostsAutoSummaryWithLog(LOG_HOSTS_AUTO_REPAIR, hostsAutoDesktopService.repairSummary()));
@@ -550,6 +532,115 @@ public class LauncherController {
 
     private void appendQuickAppSummary(QuickAppSummary summary) {
         launcherView.updateQuickAppSummary(summary);
+        launcherView.appendLog(summary.toLogBlock());
+    }
+
+    private ProvisioningApplySummary buildProvisioningPlanSummary() {
+        return provisioningApplyDesktopService.planSummary(
+            launcherView.getQuickAppProjectCode(),
+            launcherView.getQuickAppProjectName(),
+            launcherView.getQuickAppTemplateCode(),
+            launcherView.getQuickAppDomain(),
+            launcherView.getQuickAppPort(),
+            launcherView.getQuickAppWebServer(),
+            launcherView.isQuickAppMysqlEnabled(),
+            launcherView.isQuickAppPhpEnabled(),
+            launcherView.isQuickAppMailpitEnabled()
+        );
+    }
+
+    private void applyProvisioningFromWizard() {
+        ProvisioningApplySummary planSummary = buildProvisioningPlanSummary();
+        appendProvisioningApplySummary(planSummary);
+        if (!planSummary.isSuccess() || !planSummary.isReadyForApply()) {
+            launcherView.showProvisioningPlanBlocked(planSummary);
+            return;
+        }
+
+        if (!launcherView.showProvisioningApplyConfirmation(
+            planSummary,
+            launcherView.getQuickAppStackLabel(),
+            launcherView.getQuickAppDomain()
+        )) {
+            launcherView.appendLog("Provisioning apply cancelled by user");
+            return;
+        }
+
+        String mysqlPassword = "";
+        if (launcherView.isQuickAppMysqlEnabled()) {
+            var passwordResult = launcherView.promptMysqlAdminPassword();
+            if (passwordResult.isEmpty()) {
+                launcherView.appendLog("Provisioning apply cancelled before MySQL credentials");
+                return;
+            }
+            mysqlPassword = passwordResult.get();
+        }
+
+        runProvisioningApplyAsync(mysqlPassword);
+    }
+
+    private void runProvisioningApplyAsync(String mysqlPassword) {
+        String projectCode = launcherView.getQuickAppProjectCode();
+        String projectName = launcherView.getQuickAppProjectName();
+        String templateCode = launcherView.getQuickAppTemplateCode();
+        String domain = launcherView.getQuickAppDomain();
+        int port = launcherView.getQuickAppPort();
+        String webServer = launcherView.getQuickAppWebServer();
+        boolean includeMysql = launcherView.isQuickAppMysqlEnabled();
+        boolean includePhp = launcherView.isQuickAppPhpEnabled();
+        boolean includeMailpit = launcherView.isQuickAppMailpitEnabled();
+
+        launcherView.setProvisioningApplyRunning(true);
+        Task<ProvisioningApplySummary> task = new Task<>() {
+            @Override
+            protected ProvisioningApplySummary call() {
+                return provisioningApplyDesktopService.applySummary(
+                    projectCode,
+                    projectName,
+                    templateCode,
+                    domain,
+                    port,
+                    webServer,
+                    includeMysql,
+                    includePhp,
+                    includeMailpit,
+                    mysqlPassword
+                );
+            }
+        };
+
+        task.setOnSucceeded(event -> {
+            launcherView.setProvisioningApplyRunning(false);
+            handleProvisioningApplyResult(task.getValue());
+        });
+        task.setOnFailed(event -> {
+            launcherView.setProvisioningApplyRunning(false);
+            ProvisioningApplySummary failed = ProvisioningApplySummary.empty(
+                "Provisioning apply",
+                task.getException() == null ? "unknown apply error" : task.getException().getMessage()
+            );
+            handleProvisioningApplyResult(failed);
+        });
+
+        Thread worker = new Thread(task, "jhoster-provisioning-apply");
+        worker.setDaemon(true);
+        worker.start();
+    }
+
+    private void handleProvisioningApplyResult(ProvisioningApplySummary applySummary) {
+        appendProvisioningApplySummary(applySummary);
+        if (!applySummary.isSuccess()) {
+            if (launcherView.showProvisioningFailureDialog(applySummary)) {
+                launcherView.showWorkflowPage();
+                appendWorkflowSummary(webServerWorkflowDesktopService.listRunsSummary());
+            }
+            return;
+        }
+        refreshHostsAutoStatus();
+    }
+
+    private void appendProvisioningApplySummary(ProvisioningApplySummary summary) {
+        launcherView.updateProvisioningApplySummary(summary);
         launcherView.appendLog(summary.toLogBlock());
     }
 

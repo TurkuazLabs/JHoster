@@ -1,7 +1,7 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\config\DesktopApiConfig.java
 // # 📌 Amac: Desktop API route ve varsayilan workflow/service/runtime manager ve quick app, quick action ve compact dashboard degerlerini merkezi olarak tutar
 // # 📌 Modul - Java
-// # Version: 3.76.0
+// # Version: 3.79.0
 // # Aciklama: JavaFX tarafinda agent URL, quick app plan route, license route, hosts auto UI route, feature registry, package downloader, aktif web server mode, fullscreen layout ve New Site stack secimi ayarlarini merkezi tutar
 // # Bagimli Oldugu Katman: Config
 
@@ -23,6 +23,7 @@ public final class DesktopApiConfig {
     public static final String RUNTIME_VERSIONS_ROUTE = "/api/v1/runtime-versions";
     public static final String PROJECTS_ROUTE = "/api/v1/projects";
     public static final String QUICK_APPS_ROUTE = "/api/v1/quick-apps";
+    public static final String PROVISIONING_APPLY_ROUTE = "/api/v1/provisioning-apply";
     public static final String LICENSE_ROUTE = "/api/v1/license";
     public static final String VIRTUAL_HOSTS_ROUTE = "/api/v1/virtual-hosts";
     public static final String NGINX_RELOAD_ROUTE = "/api/v1/nginx-reload";
@@ -116,6 +117,8 @@ public final class DesktopApiConfig {
     public static final boolean DEFAULT_QUICK_APP_INCLUDE_MAILPIT = false;
     public static final boolean QUICK_APP_CREATE_DRY_RUN = false;
     public static final String QUICK_APP_PLAN_ROUTE = QUICK_APPS_ROUTE + "/" + DEFAULT_QUICK_APP_PROJECT_CODE + "/plan";
+    public static final String DEFAULT_MYSQL_ADMIN_USER = "root";
+    public static final boolean PROVISIONING_ALLOW_REAL_EXECUTION = false;
 
     public static final String QUICK_ACTION_WEB_URL = "http://localhost";
     public static final String QUICK_ACTION_MAILPIT_URL = "http://localhost:8025";

@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\docs\PROVISIONING_APPLY.md
 # 📌 Amac: v3.78.0 kullanici onayli provisioning apply akisini dokumante eder
 # 📌 Modul - Markdown
-# Version: 3.78.0
+# Version: 3.79.0
 # Aciklama: Dry-run, approval guard, package/runtime, web workflow ve MySQL database create siralamasini tanimlar
 # Bagimli Oldugu Katman: Service | Tool | Config
 
@@ -31,3 +31,12 @@ POST body icinde MySQL yonetici sifresi tasinabilir. Sifre query string'e yazilm
 MySQL adapter shell kullanmaz; `mysql.exe` process'i arguman listesi ile baslatilir. Admin sifresi `MYSQL_PWD` environment degeri ile process'e aktarilir ve kayit altina alinmaz.
 
 Gercek MySQL apply preflight asamasinda `mysql.exe` discovery ve `executor.allow_shell_commands` kontrol edilir. Bu kosullardan biri hazir degilse Quick App create baslamadan apply bloklanir.
+
+
+## Desktop v3.79.0
+
+New Site Wizard ayni backend apply endpointini kullanir. `Plan Site` preflight calistirir. Plan hazir degilse gercek apply baslatilmaz. Hazir plan icin `Create Test Site` kullanici onayi ister.
+
+MySQL seciliyse sifre JavaFX PasswordField uzerinden alinir ve yalniz JSON request body icinde kullanilir. Desktop request body loglanmaz.
+
+Uzun apply islemi JavaFX `Task` ile arka planda calisir. Wizard progress alani `Applying provisioning...` durumunu gosterir; tamamlandiginda `Apply Steps` ve `Apply Run` ozetleri guncellenir. Failure dialog'u kullaniciya Workflow ekranini acarak web workflow run/rollback kayitlarini inceleme secenegi verir.
