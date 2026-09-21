@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\README.md
 # 📌 Amac: JHoster sade root layout ana okuma dosyasi
 # 📌 Modul - Markdown
-# Version: 3.77.0
+# Version: 3.78.0
 # Aciklama: JHoster root layout, New Site stack provisioning plan, agent, desktop, Settings/Logs ve API audit akislarini aciklar
 
 Bagimli Oldugu Katman: Service | Tool | Config | View
@@ -310,3 +310,12 @@ Bu surumde ana sol sidebar menu korunmustur. Settings penceresi icinde tab menu 
 - Topbar artik Plan, Sites, Hosts ve Engine durumlarini gosterir.
 - Projects, Virtual Hosts ve Apps sayfalari calisan aksiyon kartlariyla guncellendi.
 - API surface audit ve gereksiz dosya temizligi tekrar kontrol edildi.
+
+
+## v3.78.0 Provisioning Apply
+
+- New Site provisioning plani artik `/api/v1/provisioning-apply` API yuzeyi ile kullanici onayli apply akimina baglanir.
+- Varsayilan apply davranisi dry-run'dir; gercek islem icin `dry_run=false` ve `approved=true` zorunludur.
+- Eksik paketler Package Downloader ile hazirlanir, runtime gerekirse aktive edilir, Quick App create sonrasinda Apache/Nginx profile ve unified workflow calisir.
+- MySQL seciliyse `mysql.exe` uzerinden database create adapter calisir. Admin sifresi query/registry/response icinde saklanmaz.
+- Ayrintilar: `app/docs/PROVISIONING_APPLY.md`.

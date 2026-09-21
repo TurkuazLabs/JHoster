@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\main.py
 # 📌 Amac: JHoster agent FastAPI uygulamasini baslatilabilir hale getirir
 # 📌 Modul - FileType
-# Version: 3.77.0
+# Version: 3.78.0
 # Aciklama: Root, health, component, process, runtime, quick app, package downloader, license feature registry, web server workflow ve folder layout, hosts auto route kayitlarini baglar
 # Bagimli Oldugu Katman: Controller
 
@@ -38,6 +38,7 @@ from controllers.web_server_profile_controller import router as web_server_profi
 from controllers.web_server_workflow_controller import router as web_server_workflow_router
 from controllers.process_controller import router as process_router
 from controllers.project_controller import router as project_router
+from controllers.provisioning_apply_controller import router as provisioning_apply_router
 from controllers.quick_app_controller import router as quick_app_router
 from controllers.root_controller import router as root_router
 from controllers.runtime_version_controller import router as runtime_version_router
@@ -64,6 +65,7 @@ app.include_router(runtime_version_router)
 app.include_router(license_router)
 app.include_router(project_router)
 app.include_router(quick_app_router)
+app.include_router(provisioning_apply_router)
 app.include_router(virtual_host_router)
 app.include_router(nginx_publish_router)
 app.include_router(nginx_validate_router)

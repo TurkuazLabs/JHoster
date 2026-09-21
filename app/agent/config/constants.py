@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\config\constants.py
 # 📌 Amac: JHoster agent sabit degerlerini merkezi olarak tanimlar
 # 📌 Modul - FileType
-# Version: 3.76.0
+# Version: 3.78.0
 # Aciklama: Route, dosya adi, sade root layout, manifest, executor, cache, package downloader, app registry, process, web server mode, port guard, portable version, quick app, web server workflow ve layout sabitleri
 # Bagimli Oldugu Katman: Config
 
@@ -13,6 +13,7 @@ PROCESS_STATE_FILE_NAME = "process_state.json"
 RUNTIME_VERSION_STATE_FILE_NAME = "runtime_versions.json"
 PACKAGE_DOWNLOAD_REGISTRY_FILE_NAME = "package_download_registry.json"
 STACK_PROVISIONING_CONFIG_FILE_NAME = "stack_provisioning.yml"
+PROVISIONING_APPLY_REGISTRY_FILE_NAME = "provisioning_apply_registry.json"
 PROJECT_REGISTRY_FILE_NAME = "project_registry.json"
 LICENSE_STATE_FILE_NAME = "license_state.json"
 VIRTUAL_HOST_REGISTRY_FILE_NAME = "virtual_host_registry.json"
@@ -133,6 +134,8 @@ PROJECT_ROUTE_TAG = "projects"
 LICENSE_ROUTE_PREFIX = f"{API_VERSION_PREFIX}/license"
 LICENSE_ROUTE_TAG = "license"
 QUICK_APP_ROUTE_PREFIX = f"{API_VERSION_PREFIX}/quick-apps"
+PROVISIONING_APPLY_ROUTE_PREFIX = f"{API_VERSION_PREFIX}/provisioning-apply"
+PROVISIONING_APPLY_ROUTE_TAG = "provisioning-apply"
 QUICK_APP_ROUTE_TAG = "quick-apps"
 FOLDER_LAYOUT_ROUTE_PREFIX = f"{API_VERSION_PREFIX}/folder-layout"
 FOLDER_LAYOUT_ROUTE_TAG = "folder-layout"

@@ -1,10 +1,21 @@
 # 📄 Dosya Yolu: E:\JHoster\TEST_REPORT.md
-# 📌 Amac: JHoster v3.77.0 test raporu
+# 📌 Amac: JHoster v3.78.0 test raporu
 # 📌 Modul - Markdown
-# Version: 3.77.0
+# Version: 3.78.0
 # Aciklama: Release cleanup, API route audit, Logs tab UI, Community plan gate ve temel static testleri kaydeder
 
 Bagimli Oldugu Katman: Service | Tool | Config | View
+
+
+## v3.78.0 Provisioning Apply
+
+- Python compileall: basarili.
+- `test-stack-provisioning.py`: geriye donuk provisioning plan smoke testleri basarili.
+- `test-provisioning-apply.py`: plan ve POST dry-run senaryolari basarili.
+- `test-provisioning-apply.py`: `approved=true` olmadan real apply bloklama basarili.
+- `test-provisioning-apply.py`: MySQL real apply oncesi password guard basarili.
+- API surface audit: provisioning apply route listesi ile uyumlu.
+- MySQL sifresi response/registry icine yazilmayan body-only credential olarak tasarlandi.
 
 
 
