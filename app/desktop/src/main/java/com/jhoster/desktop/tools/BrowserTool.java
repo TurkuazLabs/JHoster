@@ -1,8 +1,8 @@
 // # 📄 Dosya Yolu: E:\JHoster\app\desktop\src\main\java\com\jhoster\desktop\tools\BrowserTool.java
 // # 📌 Amac: Sistem varsayilan tarayicisinda panel URL acma adaptorudur
 // # 📌 Modul - Java
-// # Version: 3.2.1
-// # Aciklama: Desktop browser entegrasyonunu Tool katmaninda izole eder
+// # Version: 3.80.0
+// # Aciklama: Desktop website ve mailto entegrasyonunu Tool katmaninda izole eder
 //
 // Bagimli Oldugu Katman: Tool
 
@@ -22,7 +22,19 @@ public class BrowserTool {
         try {
             Desktop.getDesktop().browse(new URI(url));
         } catch (IOException | URISyntaxException exception) {
-            // MVP: user-visible log sonraki surumde controller'a geri dondurulecek.
+            // Browser acilamiyorsa UI akisi kesilmez.
+        }
+    }
+
+    public void openMail(String emailAddress) {
+        if (!Desktop.isDesktopSupported()) {
+            return;
+        }
+
+        try {
+            Desktop.getDesktop().mail(new URI("mailto:" + emailAddress));
+        } catch (IOException | URISyntaxException exception) {
+            // Mail client acilamiyorsa UI akisi kesilmez.
         }
     }
 }
