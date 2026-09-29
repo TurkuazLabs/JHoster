@@ -13,6 +13,7 @@ from config.constants import QUICK_APP_ROUTE_PREFIX, QUICK_APP_ROUTE_TAG, STACK_
 from config.settings import AppSettings
 from repositories.hosts_auto_registry_repository import HostsAutoRegistryRepository
 from repositories.license_state_repository import LicenseStateRepository
+from repositories.local_entitlement_repository import LocalEntitlementRepository
 from repositories.project_registry_repository import ProjectRegistryRepository
 from repositories.quick_app_registry_repository import QuickAppRegistryRepository
 from repositories.manifest_repository import ManifestRepository
@@ -42,7 +43,9 @@ settings = AppSettings.load()
 project_path_tool = ProjectPathTool(settings.root_path)
 project_registry_repository = ProjectRegistryRepository(settings.storage_path)
 plan_gate_service = PlanGateService(
-    license_state_repository=LicenseStateRepository(settings.storage_path),
+    entitlement_provider=LocalEntitlementRepository(
+        license_state_repository=LicenseStateRepository(settings.storage_path),
+    ),
     project_registry_repository=project_registry_repository,
 )
 hosts_auto_service = HostsAutoService(
