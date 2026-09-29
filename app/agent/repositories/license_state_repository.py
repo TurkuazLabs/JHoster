@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\repositories\license_state_repository.py
 # 📌 Amac: JHoster plan ve lisans durumunu JSON dosyasindan okur
 # 📌 Modul - FileType
-# Version: 3.63.0
-# Aciklama: Community ve Pro plan anahtarini agent servislerine merkezi olarak saglar
+# Version: 3.80.0
+# Aciklama: Legacy local plan state'i guvenli okur; eksik, bozuk veya gecersiz dosyada Community fallback saglar
 # Bagimli Oldugu Katman: Repo
 
 from pathlib import Path
@@ -35,8 +35,11 @@ class LicenseStateRepository:
         if not self.license_file_path.exists():
             return {"plan_key": LICENSE_DEFAULT_PLAN}
 
-        with self.license_file_path.open("r", encoding="utf-8") as license_file:
-            loaded_data = json.load(license_file)
+        try:
+            with self.license_file_path.open("r", encoding="utf-8") as license_file:
+                loaded_data = json.load(license_file)
+        except (OSError, json.JSONDecodeError):
+            return {"plan_key": LICENSE_DEFAULT_PLAN}
 
         if not isinstance(loaded_data, dict):
             return {"plan_key": LICENSE_DEFAULT_PLAN}
