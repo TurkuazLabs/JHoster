@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\controllers\quick_app_controller.py
 # 📌 Amac: Quick App ve stack secimli New Site HTTP endpointlerini tanimlar
 # 📌 Modul - FileType
-# Version: 3.77.0
+# Version: 3.80.0
 # Aciklama: Controller sadece request alir ve stack secimlerini provisioning destekli Quick App service katmanina aktarir
 # Bagimli Oldugu Katman: Controller
 
