@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\controllers\project_controller.py
 # 📌 Amac: JHoster user project HTTP endpointlerini tanimlar
 # 📌 Modul - FileType
-# Version: 3.69.0
+# Version: 3.80.0
 # Aciklama: Controller sadece request alir ve project service katmanini cagirir
 # Bagimli Oldugu Katman: Controller
 
