@@ -1,0 +1,45 @@
+# 📄 Dosya Yolu: E:\JHoster\.github\workflows\entitlement-provider.yml
+# 📌 Amac: JHoster Community entitlement provider ve plan gate regression testlerini calistirmak
+# 📌 Modul - YAML
+# Version: 3.80.0
+# Aciklama: Python syntax ve Community/Pro entitlement boundary testlerini GitHub Actions uzerinde dogrular
+# Bagimli Oldugu Katman: Tool | Service | Repo | Model
+
+name: Entitlement Provider Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  entitlement-provider:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile entitlement modules
+        run: |
+          python -m py_compile \
+            app/agent/models/entitlement_state.py \
+            app/agent/services/entitlement_provider.py \
+            app/agent/repositories/license_state_repository.py \
+            app/agent/repositories/local_entitlement_repository.py \
+            app/agent/services/plan_gate_service.py
+
+      - name: Run entitlement provider regression
+        working-directory: app/agent
+        run: python test-entitlement-provider.py
