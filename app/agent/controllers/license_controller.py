@@ -1,8 +1,8 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\controllers\license_controller.py
 # 📌 Amac: JHoster lisans ve plan durumunu HTTP endpoint olarak sunar
 # 📌 Modul - FileType
-# Version: 3.65.0
-# Aciklama: Controller sadece plan durumunu servis katmanindan alir ve API cevabina aktarir ve feature registry alanini sunar
+# Version: 3.80.0
+# Aciklama: Controller plan, feature ve entitlement provider durumunu servis katmanindan alip API cevabina aktarir
 # Bagimli Oldugu Katman: Controller
 
 from fastapi import APIRouter
@@ -45,5 +45,7 @@ def get_license_state() -> dict:
             "upgrade_hint": license_summary.get("upgrade_hint"),
             "feature_flags": license_summary.get("feature_flags"),
             "feature_registry": license_summary.get("feature_registry"),
+            "entitlement_source": license_summary.get("entitlement_source"),
+            "entitlement_valid": license_summary.get("entitlement_valid"),
         }
     )
