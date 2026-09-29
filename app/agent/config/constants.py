@@ -1,7 +1,7 @@
 # 📄 Dosya Yolu: E:\JHoster\app\agent\config\constants.py
 # 📌 Amac: JHoster agent sabit degerlerini merkezi olarak tanimlar
 # 📌 Modul - FileType
-# Version: 3.78.0
+# Version: 3.80.0
 # Aciklama: Route, dosya adi, sade root layout, manifest, executor, cache, package downloader, app registry, process, web server mode, port guard, portable version, quick app, web server workflow ve layout sabitleri
 # Bagimli Oldugu Katman: Config
 
@@ -368,6 +368,7 @@ LICENSE_LABEL_PRO = "Pro"
 LICENSE_USAGE_UNLIMITED_LABEL = "Unlimited"
 LICENSE_UPGRADE_HINT = "Pro surum sinirsiz aktif site, gelismis SSL, yedekleme, DNS ve AI modul kapilarini acar."
 LICENSE_FEATURE_SITE_LIMIT = "site_limit"
+LICENSE_FEATURE_UNLIMITED_SITES = "unlimited_sites"
 LICENSE_FEATURE_ADVANCED_SSL = "advanced_ssl"
 LICENSE_FEATURE_AUTOMATED_BACKUP = "automated_backup"
 LICENSE_FEATURE_ADVANCED_DNS = "advanced_dns"
