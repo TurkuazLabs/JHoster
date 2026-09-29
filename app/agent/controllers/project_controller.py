@@ -11,6 +11,7 @@ from config.constants import PROJECT_DEFAULT_RUNTIME_FAMILY, PROJECT_ROUTE_PREFI
 from config.settings import AppSettings
 from repositories.hosts_auto_registry_repository import HostsAutoRegistryRepository
 from repositories.license_state_repository import LicenseStateRepository
+from repositories.local_entitlement_repository import LocalEntitlementRepository
 from repositories.project_registry_repository import ProjectRegistryRepository
 from repositories.runtime_version_repository import RuntimeVersionRepository
 from services.hosts_auto_service import HostsAutoService
@@ -28,7 +29,9 @@ settings = AppSettings.load()
 project_path_tool = ProjectPathTool(settings.root_path)
 project_registry_repository = ProjectRegistryRepository(settings.storage_path)
 plan_gate_service = PlanGateService(
-    license_state_repository=LicenseStateRepository(settings.storage_path),
+    entitlement_provider=LocalEntitlementRepository(
+        license_state_repository=LicenseStateRepository(settings.storage_path),
+    ),
     project_registry_repository=project_registry_repository,
 )
 hosts_auto_service = HostsAutoService(
