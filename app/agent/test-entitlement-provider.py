@@ -67,6 +67,22 @@ def assert_local_paid_plan_cannot_unlock_runtime() -> None:
         assert state.source == "local_community_fallback"
 
 
+def assert_malformed_local_state_falls_back_to_community() -> None:
+    with TemporaryDirectory() as temp_dir:
+        storage_path = Path(temp_dir)
+        license_path = storage_path / "license_state.json"
+        license_path.write_text("{invalid-json", encoding="utf-8")
+
+        provider = LocalEntitlementRepository(
+            license_state_repository=LicenseStateRepository(storage_path),
+        )
+        state = provider.get_entitlement_state()
+
+        assert state.plan_key == LICENSE_PLAN_COMMUNITY
+        assert state.valid is True
+        assert state.source == "local_community_fallback"
+
+
 def assert_explicit_dev_provider_can_model_paid_state() -> None:
     with TemporaryDirectory() as temp_dir:
         storage_path = Path(temp_dir)
@@ -172,6 +188,7 @@ def assert_invalid_paid_state_fails_closed() -> None:
 def main() -> None:
     checks = [
         assert_local_paid_plan_cannot_unlock_runtime,
+        assert_malformed_local_state_falls_back_to_community,
         assert_explicit_dev_provider_can_model_paid_state,
         assert_paid_plan_requires_feature_for_unlimited_sites,
         assert_unlimited_sites_feature_unlocks_limit,
