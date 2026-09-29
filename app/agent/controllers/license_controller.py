@@ -10,6 +10,7 @@ from fastapi import APIRouter
 from config.constants import LICENSE_ROUTE_PREFIX, LICENSE_ROUTE_TAG
 from config.settings import AppSettings
 from repositories.license_state_repository import LicenseStateRepository
+from repositories.local_entitlement_repository import LocalEntitlementRepository
 from repositories.project_registry_repository import ProjectRegistryRepository
 from services.plan_gate_service import PlanGateService
 from views.api_response_view import ApiResponseView
@@ -20,7 +21,9 @@ router = APIRouter(prefix=LICENSE_ROUTE_PREFIX, tags=[LICENSE_ROUTE_TAG])
 settings = AppSettings.load()
 project_registry_repository = ProjectRegistryRepository(settings.storage_path)
 plan_gate_service = PlanGateService(
-    license_state_repository=LicenseStateRepository(settings.storage_path),
+    entitlement_provider=LocalEntitlementRepository(
+        license_state_repository=LicenseStateRepository(settings.storage_path),
+    ),
     project_registry_repository=project_registry_repository,
 )
 api_response_view = ApiResponseView()
