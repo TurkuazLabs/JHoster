@@ -1,9 +1,11 @@
-# 📄 Dosya Yolu: E:\JHoster\ROADMAP.md
-# 📌 Amac: JHoster gelistirme yol haritasini tanimlar
-# 📌 Modul - Markdown
-# Version: 3.79.0
-# Aciklama: v3.77.0 stack provisioning plan tamamlanmasini ve sonraki gercek apply adimlarini tanimlar
-# Bagimli Oldugu Katman: View
+<!--
+Dosya Yolu: REPO_ROOT/ROADMAP.md
+Amac: JHoster gelistirme yol haritasini tanimlar
+Modul - Markdown
+Version: 3.79.0
+Aciklama: v3.77.0 stack provisioning plan tamamlanmasini ve sonraki gercek apply adimlarini tanimlar
+Bagimli Oldugu Katman: View
+-->
 
 # JHoster Roadmap
 
