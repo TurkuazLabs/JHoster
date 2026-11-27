@@ -1,10 +1,11 @@
-# 📄 Dosya Yolu: E:\JHoster\README.md
-# 📌 Amac: JHoster sade root layout ana okuma dosyasi
-# 📌 Modul - Markdown
-# Version: 3.79.0
-# Aciklama: JHoster root layout, New Site stack provisioning plan, agent, desktop, Settings/Logs ve API audit akislarini aciklar
-
+<!--
+Dosya Yolu: REPO_ROOT/README.md
+Amac: JHoster sade root layout ana okuma dosyasi
+Modul - Markdown
+Version: 3.79.0
+Aciklama: JHoster root layout, New Site stack provisioning plan, agent, desktop, Settings/Logs ve API audit akislarini aciklar
 Bagimli Oldugu Katman: Service | Tool | Config | View
+-->
 
 # JHoster
 
